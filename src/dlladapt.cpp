@@ -11,6 +11,9 @@
 #if AGS_PLATFORM_OS_MACOS || AGS_PLATFORM_OS_IOS
 #include <mach-o/dyld.h>
 #endif
+#if AGS_PLATFORM_OS_LINUX
+#include <unistd.h>
+#endif
 #include <climits>  // For PATH_MAX
 #include <string>
 #include <algorithm>
