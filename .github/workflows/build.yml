@@ -64,7 +64,7 @@ jobs:
         # fi
     - uses: actions/upload-artifact@v4
       with:
-        name: Upload Artifact
+        name: agsworks-${{ matrix.os }}
         path: |
           ${{runner.workspace}}/build/Debug/*.dll
           ${{runner.workspace}}/build/Release/*.dll
