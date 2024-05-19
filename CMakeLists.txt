@@ -80,6 +80,11 @@ else ()
     endif ()
 endif ()
 
+if(APPLE)
+    # The MacOS version of AGS expects plugins to have the .dylib extension
+    set_target_properties(AGSWorks PROPERTIES SUFFIX ".dylib")
+endif()
+
 if(MINGW OR MSYS)
     # Remove lib- prefix when compiling with MinGW
     set_target_properties(AGSWorks PROPERTIES PREFIX "")
