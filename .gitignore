@@ -1,0 +1,185 @@
+# Linux related paths
+.pc
+
+## start Android related
+
+# Built application files
+*.apk
+*.aar
+*.ap_
+*.aab
+
+# Files for the ART/Dalvik VM
+*.dex
+
+# Java class files
+*.class
+
+# Gradle files
+.gradle/
+
+# Log Files
+*.log
+
+# Android Studio Navigation editor temp files
+.navigation/
+
+# IntelliJ
+*.iml
+.idea/
+# CLion
+cmake-build-*/
+
+# Android Studio 3 in .gitignore file.
+.idea/caches
+.idea/modules.xml
+# Comment next line if keeping position of elements in Navigation Editor is relevant for you
+.idea/navEditor.xml
+
+
+# External native build folder generated in Android Studio 2.2 and later
+.externalNativeBuild
+.cxx/
+
+# Version control
+vcs.xml
+
+# Generated files
+bin/
+gen/
+out/
+
+# ags game in Android single game project used for testing
+Android/mygame/app/src/main/assets
+
+# Ignore prebuilt libraries
+Android/library/runtime/libs/
+
+## end Android related
+
+## Xcode Build generated
+**/build
+**/DerivedData
+
+## Xcode Various settings
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+**/xcuserdata
+
+## Xcode Other
+*.moved-aside
+*.xcuserstate
+*.xccheckout
+*.xcscmblueprint
+
+
+# Linux output and temporary files
+*.o
+*.d
+Engine/common.a
+Engine/ags
+
+
+# MSVS solution output and temporary files
+**/.vs
+*.csproj.user
+*.aps
+*.ncb
+*.suo
+*.VC.db
+*.VC.opendb
+*.vcproj.*.user
+*.vcxproj.user
+**/Debug
+**/Debug_XP
+**/Release
+**/Release_XP
+**/.build
+**/.lib
+**/.test
+
+# Force git to NOT ignore this source folder
+# this is necessary because some of the above patterns have "*Debug" in them
+!Common/debug
+!Engine/debug
+
+
+# Tools output and temporary files
+libsrc/*.tar*
+libsrc/*.zip
+
+
+# NuGet
+*.nupkg
+# The packages folder can be ignored because of Package Restore
+**/[Pp]ackages/*
+# except build/, which is used as an MSBuild target.
+!**/[Pp]ackages/build/
+# Uncomment if necessary however generally it will be regenerated when needed
+#!**/[Pp]ackages/repositories.config
+# NuGet v3's project.json files produces more ignorable files
+*.nuget.props
+*.nuget.targets
+
+
+# macOS system files
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+
+# Windows system files
+thumbs.db
+desktop.ini
+
+
+# recommended CMake build directory
+build*/**
+
+
+# VSCode project configuration
+**/.vscode
+
+
+# Windows installer
+Windows/Installer/Output/
+Windows/Installer/Source/*
+!Windows/Installer/Source/Licenses/
+!Windows/Installer/Source/URLs/
+
+# Emscripten EMSDK
+Emscripten/emscripten/
+Emscripten/build*/
+
+# ignore tools built from their makefiles
+Tools/agf2autoash/agf2autoash
+Tools/agf2dlgasc/agf2dlgasc
+Tools/agf2glvar/agf2glvar
+Tools/agspak/agspak
+Tools/agsunpak/agsunpak
+Tools/crm2ash/crm2ash
+Tools/crmpak/crmpak
+Tools/trac/trac
+
+# ignore lib sources fetch with download.sh
+libsrc/SDL/
+libsrc/SDL2.framework/
+libsrc/SDL_sound/
+libsrc/ogg/
+libsrc/theora/
+libsrc/vorbis/
+
+libsrc/SDL2-Framework.dmg
+
+# ags game in ios game project
+iOS/Resources
+
+# ignore libraries dependencies manually placed in Editor
+Editor/References/**/*.dll

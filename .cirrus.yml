@@ -1,0 +1,82 @@
+build_linux_task:
+  container:
+    dockerfile: ci/linux/Dockerfile
+    docker_arguments:
+      matrix:
+        - FROM_PLATFORM: linux/i386
+        - FROM_PLATFORM: linux/amd64
+      FROM_DEBIAN: debian/eol:jessie
+  env:
+    matrix:
+      - BUILD_TYPE: release
+  setup_agscode_script: |
+    pushd ..
+    url="https://github.com/adventuregamestudio/ags/archive/refs/tags/v3.6.1.24.tar.gz"
+    mkdir ags && curl -fLSs "$url" | tar -f - -xvzC ags --strip-components 1
+    popd
+  setup_destdir_script: |
+    mkdir destdir
+    mkdir destdir/lib
+    arch=$(dpkg --print-architecture)
+    ln -s destdir/lib lib_${BUILD_TYPE}_$arch
+  build_script: |
+    arch=$(dpkg --print-architecture)
+    make
+    cp libagsworks.so destdir/lib/
+  binaries_artifacts:
+    path: lib_*/*
+
+packaging_task:
+  depends_on:
+    - build_linux
+  container:
+    image: alpine:3.10
+  install_packages_script: apk add --no-cache curl libarchive-tools zip unzip
+  package_linux_script: |
+    cwd="$(pwd)"
+    tmp=/tmp/bundle$$
+    mkdir -p $tmp/linux
+    url="https://api.cirrus-ci.com/v1/artifact/build/$CIRRUS_BUILD_ID/build_linux/binaries.zip"
+    echo Downloading files for Linux
+    curl -fLsS "$url" --output "$tmp/binaries.zip"
+    unzip -d "$tmp/linux" "$tmp/binaries.zip"
+    rm -fr $tmp/binaries.zip
+    cd $tmp/linux && mv lib_release_amd64 lib64 && mv lib_release_i386 lib32 && cd $cwd
+    cd $tmp/linux && bsdtar -cvzf $cwd/agsworks_linux.tar.gz lib* && cd $cwd
+    rm -rf $tmp/linux
+  archive_artifacts:
+    path: agsworks_*.*
+
+make_release_task:
+  depends_on:
+    - build_linux
+    - packaging
+  container:
+    image: alpine:3.10
+  env:
+    GITHUB_TOKEN: ENCRYPTED[c7b72688d97ccbdc9d36d6f5d0f438dc3f096b8f7b4c04564012bd0e9ea593849e0a47d151ba999aed2d506cfc1ff1ad]
+  install_packages_script: apk add --no-cache curl git libarchive-tools zip unzip
+  download_release_files_script: |
+    baseurl="https://api.cirrus-ci.com/v1/artifact/build/$CIRRUS_BUILD_ID/packaging/archive"
+    mkdir -p /tmp/github_release && \
+    cd /tmp/github_release && \
+    for download in \
+      "agsworks_linux.tar.gz"
+    do
+      url="$baseurl/$download"
+      echo "Downloading $url"
+      curl -fLOJ "$url"
+    done
+  upload_release_script: |
+    if [ -z "$CIRRUS_RELEASE" ]; then
+      echo "This is not a release."
+      exit 0
+    fi
+    for fpath in $(find /tmp/github_release -type f); do
+      echo "Uploading $fpath"
+      curl -X POST \
+        --data-binary @$fpath \
+        --header "Authorization: token $GITHUB_TOKEN" \
+        --header "Content-Type: application/octet-stream" \
+        "https://uploads.github.com/repos/$CIRRUS_REPO_FULL_NAME/releases/$CIRRUS_RELEASE/assets?name=${fpath##*/}"
+    done
