@@ -29,7 +29,6 @@
 
 #include <string>
 #include <vector>
-#define THIS_IS_THE_PLUGIN
 #include "agsworks.h"
 #include "agsworksutil.h"
 #include "dlladapt.h"
@@ -37,10 +36,10 @@
 #include "dynamicserviceloader.h"
 #include "misc/awlog.h"
 
-#ifdef _WIN32
 using namespace AGSWorks;
-
 DllAdapt dllAdaptor;
+
+#ifdef _WIN32
 
 // DllMain - standard Windows DLL entry point.
 // The AGS editor will cause this to get called when the editor first
@@ -438,8 +437,8 @@ void AGS_EngineStartup(IAGSEngine *lpEngine)
         compatlist_extra.emplace_back("AGS2Client::Initialize^2", (void *)(AgsWorksCompat_Initialize));
         if (dllAdaptor.IsAgsSteam)
         {
-            compatlist_extra.emplace_back("Steam::AddAchievement^1", AgsWorksCompat_SetAchievementAchieved);
-            compatlist_extra.emplace_back("Steam::AddStat^2", AgsWorksCompat_SetIntStat);
+            compatlist_extra.emplace_back("Steam::AddAchievement^1", (void *)(AgsWorksCompat_SetAchievementAchieved));
+            compatlist_extra.emplace_back("Steam::AddStat^2", (void *)(AgsWorksCompat_SetIntStat));
             compatlist_extra.emplace_back("Steam::GetIntStat^1", (void *)(AgsWorksCompat_GetIntStat));
             compatlist_extra.emplace_back("Steam::GetFloatStat^1", (void *)(AgsWorksCompat_GetFloatStat));
             compatlist_extra.emplace_back("Steam::SetIntStat^2", (void *)(AgsWorksCompat_SetIntStat));

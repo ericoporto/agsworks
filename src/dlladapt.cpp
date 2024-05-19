@@ -2,10 +2,14 @@
 // Created by erico on 5/14/2024.
 //
 
+#include "core/platform.h"
 #include "dlladapt.h"
-#ifdef _WIN32
+#if AGS_PLATFORM_OS_WINDOWS
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
+#endif
+#if AGS_PLATFORM_OS_MACOS || AGS_PLATFORM_OS_IOS
+#include <mach-o/dyld.h>
 #endif
 #include <climits>  // For PATH_MAX
 #include <string>
@@ -58,6 +62,7 @@ bool GetDllAbsolutePath(std::string& path)
 void DllAdapt::SetModule(void *hModule) {
     HModule = hModule;
 }
+#endif
 
 void DllAdapt::Init() {
 #ifdef _WIN32
@@ -91,5 +96,4 @@ void DllAdapt::Init() {
         return dll_dir;
     }
 
-#endif
 } // AGSWorks

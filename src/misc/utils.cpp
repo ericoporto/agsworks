@@ -53,8 +53,12 @@ namespace AGSWorks
     }
 
     std::string GetCwd() {
+#if AGS_PLATFORM_OS_WINDOWS
         char buff[MAX_PATH];
-        getcwd( buff, MAX_PATH );
+#else
+        char buff[PATH_MAX];
+#endif
+        getcwd( buff, sizeof(buff));
         std::string cwd( buff );
         return cwd;
     }

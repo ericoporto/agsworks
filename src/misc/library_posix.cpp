@@ -10,6 +10,7 @@
 
 #include <dlfcn.h>
 #include <utility>
+#include "awlog.h"
 
 namespace AGSWorks {
 
