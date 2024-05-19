@@ -198,12 +198,6 @@ void aw_log_info(const std::string& message){
     engine->PrintDebugConsole(message.c_str());
 }
 
-size_t aw_strnlen_s (const char* s, size_t n)
-{
-    const char* found = (const char*) memchr(s, '\0', n);
-    return found ? (size_t)(found-s) : n;
-}
-
 void AgsWorksCompat_Initialize(const char *clientID, const char *clientSecret)
 {
     if(works) {
