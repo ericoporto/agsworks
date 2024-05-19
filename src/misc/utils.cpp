@@ -12,6 +12,7 @@
 #else
 #include <unistd.h>
 #endif
+#include <climits>  // For PATH_MAX
 
 #include "utils.h"
 
