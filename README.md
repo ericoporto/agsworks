@@ -9,10 +9,8 @@ This plugin will attempt to be compatible with AGS2Client, AGSteam and AGSGalaxy
 An effort should be done to support at minimum
 
 - achievements,
-- leaderboards,
-- stats,
-- friends.
-
 - look into steamdeck stuff for steam
 
 Additional features may be store specific, and will be added later.
+
+For Compatibility, it may also support leaderboards, stats, and friends.
