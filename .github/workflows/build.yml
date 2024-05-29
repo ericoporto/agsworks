@@ -30,7 +30,7 @@ jobs:
         if [ "$RUNNER_OS" == "Linux" ]  || [ "$RUNNER_OS" == "macOS" ]; then
           cmake $GITHUB_WORKSPACE -DCMAKE_BUILD_TYPE=$BUILD_TYPE
         elif [ "$RUNNER_OS" == "Windows" ]; then
-          cmake -S $GITHUB_WORKSPACE -B . -G "Visual Studio 16 2019" -A Win32 
+          cmake -S $GITHUB_WORKSPACE -B . -G "Visual Studio 17 2022" -A Win32 
         else
           echo "$RUNNER_OS not supported"
           exit 1
