@@ -9,16 +9,17 @@ namespace AGSWorks
 
 struct SteamWorksDriver : AGSWorksDriver {
 private:
-    DynApiSteam _s;
-    bool _initialized;
-    ISteamClient* _steamClient;
-    ISteamUserStats* _steamUserStats;
+    DynApiSteam _s = DynApiSteam();
+    bool _initialized = false;
+    ISteamClient* _steamClient = nullptr;
+    ISteamUserStats* _steamUserStats = nullptr;
 
 public:
     static SteamWorksDriver* CreateDriver();
     ServiceType GetServiceType() override;
     void Init() override;
     void Shutdown() override;
+    bool AgsWorksCompat_IsInitialized() override;
 };
 
 } // namespace AGSWorks

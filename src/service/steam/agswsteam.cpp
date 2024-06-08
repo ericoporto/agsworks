@@ -7,10 +7,13 @@ namespace AGSWorks
 
 void SteamWorksDriver::Init()
 {
-    _s = DynApiSteam();
+    if(_initialized) return;
+
+    _initialized = false;
     _s.Init();
 
     SteamErrMsg errMsg;
+    AWLog::LogInfo("SteamWorksDriver::Init: initializing...");
     ESteamAPIInitResult ini_res = _s.SteamAPI_InitFlat(&errMsg);
     if (ini_res != ESteamAPIInitResult::k_ESteamAPIInitResult_OK)
     {
@@ -23,7 +26,9 @@ void SteamWorksDriver::Init()
 
     _s.SteamAPI_ManualDispatch_Init();
 
+    AWLog::LogInfo("SteamWorksDriver::Init: creating steam client interface...");
     _steamClient = _s.SteamInternal_CreateInterface(_s.STEAMCLIENT_INTERFACE_VERSION);
+    AWLog::LogInfo("SteamWorksDriver::Init: steam client interface created.");
     HSteamUser steamUser = _s.SteamAPI_GetHSteamUser();
     HSteamPipe steamPipe = _s.SteamAPI_GetHSteamPipe();
     if (!_steamClient || !steamUser || !steamPipe)
@@ -34,6 +39,7 @@ void SteamWorksDriver::Init()
         return;
     }
 
+    AWLog::LogInfo("SteamWorksDriver::Init: creating steam user stats interface...");
     _steamUserStats = _s.SteamAPI_ISteamClient_GetISteamUserStats(
             _steamClient,
             steamUser,
@@ -47,9 +53,11 @@ void SteamWorksDriver::Init()
         _s.Shutdown();
         return;
     }
+    AWLog::LogInfo("SteamWorksDriver::Init: steam user stats interface created.");
     _s.SteamAPI_ISteamUserStats_RequestCurrentStats(_steamUserStats);
 
     _initialized = true;
+    AWLog::LogInfo("SteamWorksDriver::Init: initialized ok.");
 }
 
 void SteamWorksDriver::Shutdown()
@@ -68,6 +76,10 @@ SteamWorksDriver* SteamWorksDriver::CreateDriver()
 ServiceType SteamWorksDriver::GetServiceType()
 {
     return ServiceType::eSteam;
+}
+
+bool SteamWorksDriver::AgsWorksCompat_IsInitialized() {
+    return _initialized;
 }
 
 } // namespace AGSWorks
