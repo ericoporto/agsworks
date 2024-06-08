@@ -20,6 +20,12 @@ public:
     void Init() override;
     void Shutdown() override;
     bool AgsWorksCompat_IsInitialized() override;
+    bool AgsWorksCompat_IsAchievementAchieved(const char* achievment_name) override;
+    bool AgsWorksCompat_SetAchievementAchieved(const char* achievment_name) override;
+    bool AgsWorksCompat_ResetAchievement(const char* achievment_name) override;
+    void AgsWorksCompat_ResetAchievements() override;
+    void AgsWorksCompat_ResetStats() override;
+    void AgsWorksCompat_ResetStatsAndAchievements() override;
 };
 
 } // namespace AGSWorks

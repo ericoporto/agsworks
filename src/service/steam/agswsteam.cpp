@@ -54,7 +54,14 @@ void SteamWorksDriver::Init()
         return;
     }
     AWLog::LogInfo("SteamWorksDriver::Init: steam user stats interface created.");
-    _s.SteamAPI_ISteamUserStats_RequestCurrentStats(_steamUserStats);
+    bool requestCurrentStats = _s.SteamAPI_ISteamUserStats_RequestCurrentStats(_steamUserStats);
+    if(!requestCurrentStats)
+    {
+        _s.SteamAPI_Shutdown();
+        AWLog::LogError("SteamWorksDriver::Init error: RequestCurrentStats request failed!");
+        _s.Shutdown();
+        return;
+    }
 
     _initialized = true;
     AWLog::LogInfo("SteamWorksDriver::Init: initialized ok.");
@@ -80,6 +87,47 @@ ServiceType SteamWorksDriver::GetServiceType()
 
 bool SteamWorksDriver::AgsWorksCompat_IsInitialized() {
     return _initialized;
+}
+
+bool SteamWorksDriver::AgsWorksCompat_IsAchievementAchieved(const char *achievment_name) {
+    if(!_initialized) return false;
+
+    bool achieved;
+    _s.SteamAPI_ISteamUserStats_GetAchievement(_steamUserStats, achievment_name, &achieved);
+    return achieved;
+}
+
+bool SteamWorksDriver::AgsWorksCompat_SetAchievementAchieved(const char *achievment_name) {
+    if(!_initialized) return false;
+
+    bool res_ok = _s.SteamAPI_ISteamUserStats_SetAchievement(_steamUserStats, achievment_name);
+    if(res_ok) {
+        _s.SteamAPI_ISteamUserStats_StoreStats(_steamUserStats);
+    }
+    return res_ok;
+}
+
+bool SteamWorksDriver::AgsWorksCompat_ResetAchievement(const char *achievment_name) {
+    if(!_initialized) return false;
+
+    bool res_ok = _s.SteamAPI_ISteamUserStats_ClearAchievement(_steamUserStats, achievment_name);
+    if(res_ok) {
+        _s.SteamAPI_ISteamUserStats_StoreStats(_steamUserStats);
+    }
+    return res_ok;
+}
+
+void SteamWorksDriver::AgsWorksCompat_ResetAchievements() {
+    // FIX-ME: NOT IMPLEMENTED
+    AGSWorksDriver::AgsWorksCompat_ResetAchievements();
+}
+
+void SteamWorksDriver::AgsWorksCompat_ResetStats() {
+    _s.SteamAPI_ISteamUserStats_ResetAllStats(_steamUserStats, false);
+}
+
+void SteamWorksDriver::AgsWorksCompat_ResetStatsAndAchievements() {
+    _s.SteamAPI_ISteamUserStats_ResetAllStats(_steamUserStats, true);
 }
 
 } // namespace AGSWorks
