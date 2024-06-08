@@ -23,29 +23,50 @@ enum MessageType
 
 void AWLog::InitImpl(void *pengine)
 {
-    auto *engine = static_cast<IAGSEngine*>(pengine);
-    _system_log = (SCAPI_SYSTEM_LOG)engine->GetScriptFunctionAddress("System::Log^102");
+    _pengine = pengine;
+    auto *engine = static_cast<IAGSEngine*>(_pengine);
 }
 
 void AWLog::ShutdownImpl()
 {
-    _system_log = nullptr;
+    _pengine = nullptr;
     // do nothing else
 }
 
 void AWLog::LogInfoImpl(const std::string &msg) const
 {
-    _system_log(nullptr, kDbgMsg_Info, "%s", msg.c_str());
+    if(!_pengine) return;
+    auto *engine = static_cast<IAGSEngine*>(_pengine);
+    if(engine->version >= 29) {
+        engine->Log(kDbgMsg_Info, "%s", msg.c_str());
+    } else {
+        std::string mmsg = "Info: " + msg;
+        engine->PrintDebugConsole(mmsg.c_str());
+    }
 }
 
 void AWLog::LogDebugImpl(const std::string &msg) const
 {
-    _system_log(nullptr, kDbgMsg_Debug, "%s", msg.c_str());
+    if(!_pengine) return;
+    auto *engine = static_cast<IAGSEngine*>(_pengine);
+    if(engine->version >= 29) {
+        engine->Log(kDbgMsg_Debug, "%s", msg.c_str());
+    } else {
+        std::string mmsg = "Debug: " + msg;
+        engine->PrintDebugConsole(mmsg.c_str());
+    }
 }
 
 void AWLog::LogErrorImpl(const std::string &msg) const
 {
-    _system_log(nullptr, kDbgMsg_Error, "%s", msg.c_str());
+    if(!_pengine) return;
+    auto *engine = static_cast<IAGSEngine*>(_pengine);
+    if(engine->version >= 29) {
+        engine->Log(kDbgMsg_Error, "%s", msg.c_str());
+    } else {
+        std::string mmsg = "Error: " + msg;
+        engine->PrintDebugConsole(mmsg.c_str());
+    }
 }
 
 

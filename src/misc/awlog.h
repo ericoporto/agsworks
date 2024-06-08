@@ -9,13 +9,10 @@
 #include <string>
 
 namespace AGSWorks {
-
-    using SCAPI_SYSTEM_LOG = void (*)(void *chaa, int message_type, const char *texx, ...);
-
     class AWLog {
         private:
             AWLog() = default;
-            SCAPI_SYSTEM_LOG _system_log = nullptr;
+            void* _pengine = nullptr;
 
             void LogInfoImpl(const std::string &msg) const;
             void LogDebugImpl(const std::string &msg) const;
