@@ -10,7 +10,7 @@ ServiceType AGSWorksDriver::GetServiceType() {
 }
 
 void AGSWorksDriver::Init() {
-
+    // do nothing
 }
 
 void AGSWorksDriver::Shutdown() {

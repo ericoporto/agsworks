@@ -185,7 +185,7 @@ int inline ToAgsBool(bool b){
 }
 
 bool inline ToNormalBool(int bi){
-    return bi!=0 ? true : false;
+    return bi != 0;
 }
 
 bool inline IsEmpty(const char* txt)
