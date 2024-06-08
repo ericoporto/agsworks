@@ -23,7 +23,7 @@ void SteamWorksDriver::Init()
 
     _s.SteamAPI_ManualDispatch_Init();
 
-    _steamClient = _s.SteamInternal_CreateInterface(STEAMCLIENT_INTERFACE_VERSION);
+    _steamClient = _s.SteamInternal_CreateInterface(_s.STEAMCLIENT_INTERFACE_VERSION);
     HSteamUser steamUser = _s.SteamAPI_GetHSteamUser();
     HSteamPipe steamPipe = _s.SteamAPI_GetHSteamPipe();
     if (!_steamClient || !steamUser || !steamPipe)
@@ -38,7 +38,7 @@ void SteamWorksDriver::Init()
             _steamClient,
             steamUser,
             steamPipe,
-            STEAMUSERSTATS_INTERFACE_VERSION
+            _s.STEAMUSERSTATS_INTERFACE_VERSION
     );
     if (!_steamUserStats)
     {

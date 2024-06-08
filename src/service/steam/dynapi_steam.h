@@ -29,8 +29,6 @@ namespace AGSWorks {
         uint32_t m_cubParam;
     };
 
-    const char * STEAMCLIENT_INTERFACE_VERSION = "SteamClient021";
-    const char * STEAMUSERSTATS_INTERFACE_VERSION = "STEAMUSERSTATS_INTERFACE_VERSION012";
 
     const int k_cchMaxSteamErrMsg = 1024;
     typedef char SteamErrMsg[ k_cchMaxSteamErrMsg ];
@@ -70,7 +68,7 @@ namespace AGSWorks {
         C_STEAMAPI_ISTEAMUSERSTATS_SETACHIEVEMENT c_SteamAPI_ISteamUserStats_SetAchievement;
         using C_STEAMAPI_ISTEAMUSERSTATS_GETACHIEVEMENT = bool (*)(struct ISteamUserStats *, const char *, bool *);
         C_STEAMAPI_ISTEAMUSERSTATS_GETACHIEVEMENT c_SteamAPI_ISteamUserStats_GetAchievement;
-        using C_STEAMAPI_ISTEAMUSERSTATS_CLEARACHIEVEMENT = bool (*)(struct ISteamUserStats *, const char *, bool *);
+        using C_STEAMAPI_ISTEAMUSERSTATS_CLEARACHIEVEMENT = bool (*)(struct ISteamUserStats *, const char *);
         C_STEAMAPI_ISTEAMUSERSTATS_CLEARACHIEVEMENT c_SteamAPI_ISteamUserStats_ClearAchievement;
         using C_STEAMAPI_ISTEAMUSERSTATS_GETNUMACHIEVEMENTS = uint32_t (*)(struct ISteamUserStats *);
         C_STEAMAPI_ISTEAMUSERSTATS_GETNUMACHIEVEMENTS c_SteamAPI_ISteamUserStats_GetNumAchievements;
@@ -92,6 +90,10 @@ namespace AGSWorks {
         C_STEAMAPI_MANUALDISPATCH_GETAPICALLRESULT c_SteamAPI_ManualDispatch_GetAPICallResult;
 
     public:
+
+        const char * STEAMCLIENT_INTERFACE_VERSION = "SteamClient021";
+        const char * STEAMUSERSTATS_INTERFACE_VERSION = "STEAMUSERSTATS_INTERFACE_VERSION012";
+
         bool Init();
         void Shutdown();
 
