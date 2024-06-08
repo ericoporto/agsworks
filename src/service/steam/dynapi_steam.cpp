@@ -67,12 +67,8 @@ static C_STEAMAPI_MANUALDISPATCH_FREELASTCALLBACK SteamAPI_ManualDispatch_FreeLa
 using C_STEAMAPI_MANUALDISPATCH_GETAPICALLRESULT =  uint8_t (*)(int32_t, uint64_t, void *, int32_t, int32_t, uint8_t *);
 static C_STEAMAPI_MANUALDISPATCH_GETAPICALLRESULT SteamAPI_ManualDispatch_GetAPICallResult = nullptr;
 
-static void *LoadFunc(const char* fn) {
-    std::string sfn = fn;
-    return DynamicServiceLoader::GetFunctionAddress(sfn);
-}
-
-static void CleanUp() {
+static void CleanUp()
+{
     libHandle = nullptr;
     steamUserStats = nullptr;
 
@@ -96,113 +92,90 @@ static void CleanUp() {
     SteamAPI_ManualDispatch_GetAPICallResult = nullptr;
 }
 
+
+static void *LoadFunc(const char* fn) {
+    std::string sfn = fn;
+    void* pfn = DynamicServiceLoader::GetFunctionAddress(sfn);
+    if(!pfn) {
+        std::string msg = "steam_api: symbol '" + sfn + "' not found!";
+        AWLog::LogError(msg);
+        CleanUp();
+        return nullptr;
+    }
+    return pfn;
+}
+
 static bool Init() {
     SteamAPI_Init = (C_STEAMAPI_INIT) (intptr_t) LoadFunc("SteamAPI_Init");
     if (!SteamAPI_Init) {
-        AWLog::LogError("steam_api: symbol SteamAPI_Init not found!");
-        CleanUp();
         return false;
     }
     SteamAPI_Shutdown = (C_STEAMAPI_SHUTDOWN) (intptr_t) LoadFunc("SteamAPI_Shutdown");
     if (!SteamAPI_Shutdown) {
-        AWLog::LogError("steam_api: symbol SteamAPI_Shutdown not found!");
-        CleanUp();
         return false;
     }
     SteamAPI_RunCallbacks = (C_STEAMAPI_RUNCALLBACKS) (intptr_t) LoadFunc("SteamAPI_RunCallbacks");
     if (!SteamAPI_RunCallbacks) {
-        AWLog::LogError("steam_api: symbol SteamAPI_RunCallbacks not found!");
-        CleanUp();
         return false;
     }
     SteamInternal_CreateInterface = (C_STEAMAPI_CREATEINTERFACE) (intptr_t) LoadFunc("SteamInternal_CreateInterface");
     if (!SteamInternal_CreateInterface) {
-        AWLog::LogError("steam_api: symbol SteamInternal_CreateInterface not found!");
-        CleanUp();
         return false;
     }
     SteamAPI_GetHSteamUser = (C_STEAMAPI_GETHSTEAMUSER) (intptr_t) LoadFunc("SteamAPI_GetHSteamUser");
     if (!SteamAPI_GetHSteamUser) {
-        AWLog::LogError("steam_api: symbol SteamAPI_GetHSteamUser not found!");
-        CleanUp();
         return false;
     }
     SteamAPI_GetHSteamPipe = (C_STEAMAPI_GETHSTEAMPIPE) (intptr_t) LoadFunc("SteamAPI_GetHSteamPipe");
     if (!SteamAPI_GetHSteamPipe) {
-        AWLog::LogError("steam_api: symbol SteamAPI_GetHSteamPipe not found!");
-        CleanUp();
         return false;
     }
     SteamAPI_ISteamClient_GetISteamUserStats = (C_STEAMAPI_ISTEAMCLIENT_GETISTEAMUSERSTATS) (intptr_t) LoadFunc("SteamAPI_ISteamClient_GetISteamUserStats");
     if (!SteamAPI_ISteamClient_GetISteamUserStats) {
-        AWLog::LogError("steam_api: symbol SteamAPI_ISteamClient_GetISteamUserStats not found!");
-        CleanUp();
         return false;
     }
     SteamAPI_ISteamUserStats_RequestCurrentStats = (C_STEAMAPI_ISTEAMUSERSTATS_REQUESTCURRENTSTATS) (intptr_t) LoadFunc("SteamAPI_ISteamUserStats_RequestCurrentStats");
     if (!SteamAPI_ISteamUserStats_RequestCurrentStats) {
-        AWLog::LogError("steam_api: symbol SteamAPI_ISteamUserStats_RequestCurrentStats not found!");
-        CleanUp();
         return false;
     }
     SteamAPI_ISteamUserStats_StoreStats = (C_STEAMAPI_ISTEAMUSERSTATS_STORESTATS) (intptr_t) LoadFunc("SteamAPI_ISteamUserStats_StoreStats");
     if (!SteamAPI_ISteamUserStats_StoreStats) {
-        AWLog::LogError("steam_api: symbol SteamAPI_ISteamUserStats_StoreStats not found!");
-        CleanUp();
         return false;
     }
     SteamAPI_ISteamUserStats_SetAchievement = (C_STEAMAPI_ISTEAMUSERSTATS_SETACHIEVEMENT) (intptr_t) LoadFunc("SteamAPI_ISteamUserStats_SetAchievement");
     if (!SteamAPI_ISteamUserStats_SetAchievement) {
-        AWLog::LogError("steam_api: symbol SteamAPI_ISteamUserStats_SetAchievement not found!");
-        CleanUp();
         return false;
     }
     SteamAPI_ISteamClient_GetISteamScreenshots = (C_STEAMAPI_ISTEAMCLIENT_GETISTEAMSCREENSHOTS) (intptr_t) LoadFunc("SteamAPI_ISteamClient_GetISteamScreenshots");
     if (!SteamAPI_ISteamClient_GetISteamScreenshots) {
-        AWLog::LogError("steam_api: symbol SteamAPI_ISteamClient_GetISteamScreenshots not found!");
-        CleanUp();
         return false;
     }
     SteamAPI_ISteamScreenshots_HookScreenshots = (C_STEAMAPI_ISTEAMSCREENSHOTS_HOOKSCREENSHOTS) (intptr_t) LoadFunc("SteamAPI_ISteamScreenshots_HookScreenshots");
     if (!SteamAPI_ISteamScreenshots_HookScreenshots) {
-        AWLog::LogError("steam_api: symbol SteamAPI_ISteamScreenshots_HookScreenshots not found!");
-        CleanUp();
         return false;
     }
     SteamAPI_ISteamScreenshots_WriteScreenshot = (C_STEAMAPI_ISTEAMSCREENSHOTS_WRITESCREENSHOT) (intptr_t) LoadFunc("SteamAPI_ISteamScreenshots_WriteScreenshot");
     if (!SteamAPI_ISteamScreenshots_WriteScreenshot) {
-        AWLog::LogError("steam_api: symbol SteamAPI_ISteamScreenshots_WriteScreenshot not found!");
-        CleanUp();
         return false;
     }
     SteamAPI_ManualDispatch_Init = (C_STEAMAPI_MANUALDISPATCH_INIT) (intptr_t) LoadFunc("SteamAPI_ManualDispatch_Init");
     if (!SteamAPI_ManualDispatch_Init) {
-        AWLog::LogError("steam_api: symbol SteamAPI_ManualDispatch_Init not found!");
-        CleanUp();
         return false;
     }
     SteamAPI_ManualDispatch_RunFrame = (C_STEAMAPI_MANUALDISPATCH_RUNFRAME) (intptr_t) LoadFunc("SteamAPI_ManualDispatch_RunFrame");
     if (!SteamAPI_ManualDispatch_RunFrame) {
-        AWLog::LogError("steam_api: symbol SteamAPI_ManualDispatch_RunFrame not found!");
-        CleanUp();
         return false;
     }
     SteamAPI_ManualDispatch_GetNextCallback = (C_STEAMAPI_MANUALDISPATCH_GETNEXTCALLBACK) (intptr_t) LoadFunc("SteamAPI_ManualDispatch_GetNextCallback");
     if (!SteamAPI_ManualDispatch_GetNextCallback) {
-        AWLog::LogError("steam_api: symbol SteamAPI_ManualDispatch_GetNextCallback not found!");
-        CleanUp();
         return false;
     }
     SteamAPI_ManualDispatch_FreeLastCallback = (C_STEAMAPI_MANUALDISPATCH_FREELASTCALLBACK) (intptr_t) LoadFunc("SteamAPI_ManualDispatch_FreeLastCallback");
     if (!SteamAPI_ManualDispatch_FreeLastCallback) {
-        AWLog::LogError("steam_api: symbol SteamAPI_ManualDispatch_FreeLastCallback not found!");
-        CleanUp();
         return false;
     }
     SteamAPI_ManualDispatch_GetAPICallResult = (C_STEAMAPI_MANUALDISPATCH_GETAPICALLRESULT) (intptr_t) LoadFunc("SteamAPI_ManualDispatch_GetAPICallResult");
     if (!SteamAPI_ManualDispatch_GetAPICallResult) {
-        AWLog::LogError("steam_api: symbol SteamAPI_ManualDispatch_GetAPICallResult not found!");
-        CleanUp();
         return false;
     }
     return true;
