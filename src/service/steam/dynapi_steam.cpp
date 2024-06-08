@@ -10,7 +10,6 @@
 namespace AGSWorks
 {
 
-
 struct ISteamClient;
 struct ISteamUserStats;
 struct ISteamScreenshots;
@@ -46,10 +45,16 @@ using C_STEAMAPI_ISTEAMCLIENT_GETISTEAMUSERSTATS = struct ISteamUserStats * (*)(
 static C_STEAMAPI_ISTEAMCLIENT_GETISTEAMUSERSTATS SteamAPI_ISteamClient_GetISteamUserStats = nullptr;
 using C_STEAMAPI_ISTEAMUSERSTATS_REQUESTCURRENTSTATS = uint8_t (*)(struct ISteamUserStats *);
 static C_STEAMAPI_ISTEAMUSERSTATS_REQUESTCURRENTSTATS SteamAPI_ISteamUserStats_RequestCurrentStats = nullptr;
-using C_STEAMAPI_ISTEAMUSERSTATS_STORESTATS = uint8_t (*)(struct ISteamUserStats *);
+using C_STEAMAPI_ISTEAMUSERSTATS_STORESTATS = bool (*)(struct ISteamUserStats *);
 static C_STEAMAPI_ISTEAMUSERSTATS_STORESTATS SteamAPI_ISteamUserStats_StoreStats = nullptr;
-using C_STEAMAPI_ISTEAMUSERSTATS_SETACHIEVEMENT = uint8_t (*)(struct ISteamUserStats *, const char *);
+using C_STEAMAPI_ISTEAMUSERSTATS_SETACHIEVEMENT = bool (*)(struct ISteamUserStats *, const char *);
 static C_STEAMAPI_ISTEAMUSERSTATS_SETACHIEVEMENT SteamAPI_ISteamUserStats_SetAchievement = nullptr;
+using C_STEAMAPI_ISTEAMUSERSTATS_GETACHIEVEMENT = bool (*)(struct ISteamUserStats *, const char *, bool *);
+static C_STEAMAPI_ISTEAMUSERSTATS_GETACHIEVEMENT SteamAPI_ISteamUserStats_GetAchievement = nullptr;
+using C_STEAMAPI_ISTEAMUSERSTATS_CLEARACHIEVEMENT = bool (*)(struct ISteamUserStats *, const char *, bool *);
+static C_STEAMAPI_ISTEAMUSERSTATS_CLEARACHIEVEMENT SteamAPI_ISteamUserStats_ClearAchievement = nullptr;
+using C_STEAMAPI_ISTEAMUSERSTATS_GETNUMACHIEVEMENTS = uint32_t (*)(struct ISteamUserStats *);
+static C_STEAMAPI_ISTEAMUSERSTATS_GETNUMACHIEVEMENTS SteamAPI_ISteamUserStats_GetNumAchievements = nullptr;
 using C_STEAMAPI_ISTEAMCLIENT_GETISTEAMSCREENSHOTS = struct ISteamScreenshots * (*)(struct ISteamClient *, int32_t, int32_t, const char *);
 static C_STEAMAPI_ISTEAMCLIENT_GETISTEAMSCREENSHOTS SteamAPI_ISteamClient_GetISteamScreenshots = nullptr;
 using C_STEAMAPI_ISTEAMSCREENSHOTS_HOOKSCREENSHOTS = void (*)(struct ISteamScreenshots *, uint8_t);
@@ -82,6 +87,9 @@ static void CleanUp()
     SteamAPI_ISteamUserStats_RequestCurrentStats = nullptr;
     SteamAPI_ISteamUserStats_StoreStats = nullptr;
     SteamAPI_ISteamUserStats_SetAchievement = nullptr;
+    SteamAPI_ISteamUserStats_GetAchievement = nullptr;
+    SteamAPI_ISteamUserStats_ClearAchievement = nullptr;
+    SteamAPI_ISteamUserStats_GetNumAchievements = nullptr;
     SteamAPI_ISteamClient_GetISteamScreenshots = nullptr;
     SteamAPI_ISteamScreenshots_HookScreenshots = nullptr;
     SteamAPI_ISteamScreenshots_WriteScreenshot = nullptr;
@@ -144,6 +152,18 @@ static bool Init() {
     }
     SteamAPI_ISteamUserStats_SetAchievement = (C_STEAMAPI_ISTEAMUSERSTATS_SETACHIEVEMENT) (intptr_t) LoadFunc("SteamAPI_ISteamUserStats_SetAchievement");
     if (!SteamAPI_ISteamUserStats_SetAchievement) {
+        return false;
+    }
+    SteamAPI_ISteamUserStats_GetAchievement = (C_STEAMAPI_ISTEAMUSERSTATS_GETACHIEVEMENT) (intptr_t) LoadFunc("SteamAPI_ISteamUserStats_GetAchievement");
+    if (!SteamAPI_ISteamUserStats_GetAchievement) {
+        return false;
+    }
+    SteamAPI_ISteamUserStats_ClearAchievement = (C_STEAMAPI_ISTEAMUSERSTATS_CLEARACHIEVEMENT) (intptr_t) LoadFunc("SteamAPI_ISteamUserStats_ClearAchievement");
+    if (!SteamAPI_ISteamUserStats_ClearAchievement) {
+        return false;
+    }
+    SteamAPI_ISteamUserStats_GetNumAchievements = (C_STEAMAPI_ISTEAMUSERSTATS_GETNUMACHIEVEMENTS) (intptr_t) LoadFunc("SteamAPI_ISteamUserStats_GetNumAchievements");
+    if (!SteamAPI_ISteamUserStats_GetNumAchievements) {
         return false;
     }
     SteamAPI_ISteamClient_GetISteamScreenshots = (C_STEAMAPI_ISTEAMCLIENT_GETISTEAMSCREENSHOTS) (intptr_t) LoadFunc("SteamAPI_ISteamClient_GetISteamScreenshots");
