@@ -10,7 +10,7 @@
 AGSWorks::WindowsLibrary::WindowsLibrary(AGSWorks::WindowsLibrary &&other)
 {
     _library = other._library;
-    other._library = NULL;
+    other._library = nullptr;
     _name = std::move(other._name);
     _filename = std::move(other._filename);
     _path = std::move(other._path);
@@ -46,7 +46,7 @@ void AGSWorks::WindowsLibrary::Unload()
     if (_library)
     {
         FreeLibrary(static_cast<HMODULE>(_library));
-        _library = NULL;
+        _library = nullptr;
         _name = "";
         _filename = "";
         _path = "";
@@ -55,7 +55,7 @@ void AGSWorks::WindowsLibrary::Unload()
 
 bool AGSWorks::WindowsLibrary::IsLoaded() const
 {
-    return _library != NULL;
+    return _library != nullptr;
 }
 
 void *AGSWorks::WindowsLibrary::GetFunctionAddress(const std::string &fn_name)
@@ -93,7 +93,7 @@ AGSWorks::WindowsLibrary::TryLoadAnywhere(const std::string &libfile, const std:
             return lib;
     }
 
-    return NULL;
+    return nullptr;
 }
 
 #endif // AGS_PLATFORM_OS_WINDOWS
