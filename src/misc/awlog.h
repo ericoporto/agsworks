@@ -34,8 +34,8 @@ namespace AGSWorks {
 
 } // namespace AGSWorks
 
-#define LOG_INFO(msg) AWLog::get().LogInfo(msg)
-#define LOG_ERROR(msg) AWLog::get().LogError(msg)
-#define LOG_DEBUG(msg) AWLog::get().LogDebug(msg)
+#define LOG_INFO(msg) AWLog::LogInfo(msg)
+#define LOG_ERROR(msg) AWLog::LogError(msg)
+#define LOG_DEBUG(msg) AWLog::LogDebug(msg)
 
 #endif //AGSWORKS_AWLOG_H
