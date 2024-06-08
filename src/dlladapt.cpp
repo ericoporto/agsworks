@@ -63,40 +63,52 @@ bool GetDllAbsolutePath(std::string& path)
 
 #ifdef _WIN32
 void DllAdapt::SetModule(void *hModule) {
-    HModule = hModule;
+    _hModule = hModule;
 }
 #endif
 
 void DllAdapt::Init() {
 #ifdef _WIN32
-    if(GetDllAbsolutePath(DllPath, (HMODULE)HModule))
+    if(GetDllAbsolutePath(_dllPath, (HMODULE)_hModule))
 #else
     if(GetDllAbsolutePath(DllPath))
 #endif
     {
-        DllName = DllPath.substr(DllPath.find_last_of("/\\") + 1);
-        std::string name_without_extension = DllName.substr(0, DllName.find_last_of('.'));
+        _dllName = _dllPath.substr(_dllPath.find_last_of("/\\") + 1);
+        std::string name_without_extension = _dllName.substr(0, _dllName.find_last_of('.'));
 #ifndef _WIN32
         // In non windows platforms the string is prefixed by a "lib"
         name_without_extension = name_without_extension.substr(3);
 #endif
-        DllSimpleName = name_without_extension;
-        std::transform(DllSimpleName.begin(), DllSimpleName.end(), DllSimpleNameLower.begin(),
+        _dllSimpleName = name_without_extension;
+        std::transform(_dllSimpleName.begin(), _dllSimpleName.end(), _dllSimpleNameLower.begin(),
                                [](unsigned char c){ return std::tolower(c); });
 
-        IsAgsSteam = DllSimpleNameLower == "agsteam"||
-                 DllSimpleNameLower == "agsteam-unified" ||
-                 DllSimpleNameLower == "agsteam-disjoint";
-        IsAgsGalaxy = DllSimpleNameLower == "agsgalaxy"||
-                   DllSimpleNameLower == "agsgalaxy-unified" ||
-                   DllSimpleNameLower == "agsgalaxy-disjoint";
-        IsAnyAdapted = IsAgsSteam || IsAgsGalaxy;
+        _isAgsSteam = _dllSimpleNameLower == "agsteam"||
+             _dllSimpleNameLower == "agsteam-unified" ||
+             _dllSimpleNameLower == "agsteam-disjoint";
+        _isAgsGalaxy = _dllSimpleNameLower == "agsgalaxy"||
+              _dllSimpleNameLower == "agsgalaxy-unified" ||
+              _dllSimpleNameLower == "agsgalaxy-disjoint";
+        _isAnyAdapted = _isAgsSteam || _isAgsGalaxy;
     }
 }
 
-    std::string DllAdapt::GetDllDir() {
-        std::string dll_dir = DllPath.substr(0,DllPath.find_last_of("/\\") + 1);
-        return dll_dir;
-    }
+std::string DllAdapt::GetDllDir() const {
+    std::string dll_dir = _dllPath.substr(0,_dllPath.find_last_of("/\\") + 1);
+    return dll_dir;
+}
+
+bool DllAdapt::IsAgsSteam() const {
+    return _isAgsSteam;
+}
+
+bool DllAdapt::IsAgsGalaxy() const {
+    return _isAgsGalaxy;
+}
+
+bool DllAdapt::IsAnyAdapted() const {
+    return _isAnyAdapted;
+}
 
 } // AGSWorks

@@ -10,25 +10,27 @@
 namespace AGSWorks {
 
     class DllAdapt {
-        std::string DllName;
-        std::string DllPath;
-        std::string DllSimpleName;
-        std::string DllSimpleNameLower;
-
-#ifdef _WIN32
-        void * HModule;
-#endif
-
     public:
+        bool IsAgsSteam() const;
+        bool IsAgsGalaxy() const;
+        bool IsAnyAdapted() const;
         void Init();
 #ifdef _WIN32
         void SetModule(void * hModule);
 #endif
+        std::string GetDllDir() const;
 
-        std::string GetDllDir();
-        bool IsAgsSteam;
-        bool IsAgsGalaxy;
-        bool IsAnyAdapted;
+    private:
+        bool _isAgsSteam = false;
+        bool _isAgsGalaxy = false;
+        bool _isAnyAdapted = false;
+        std::string _dllName;
+        std::string _dllPath;
+        std::string _dllSimpleName;
+        std::string _dllSimpleNameLower;
+#ifdef _WIN32
+        void * _hModule = nullptr;
+#endif
     };
 
 } // AGSWorks

@@ -408,7 +408,7 @@ void AGS_EngineStartup(IAGSEngine *lpEngine)
     }
 
     auto compatlist_extra = FunctionDefList();
-    if(dllAdaptor.IsAnyAdapted) {
+    if(dllAdaptor.IsAnyAdapted()) {
         compatlist_extra.emplace_back("AGS2Client::IsAchievementAchieved^1", (void *)(AgsWorksCompat_IsAchievementAchieved));
         compatlist_extra.emplace_back("AGS2Client::SetAchievementAchieved^1", (void *)(AgsWorksCompat_SetAchievementAchieved));
         compatlist_extra.emplace_back("AGS2Client::ResetAchievement^1", (void *)(AgsWorksCompat_ResetAchievement));
@@ -430,7 +430,7 @@ void AGS_EngineStartup(IAGSEngine *lpEngine)
         compatlist_extra.emplace_back("AGS2Client::GetCurrentGameLanguage^0", (void *)(AgsWorksCompat_GetCurrentGameLanguage));
         compatlist_extra.emplace_back("AGS2Client::FindLeaderboard^1", (void *)(AgsWorksCompat_FindLeaderboard));
         compatlist_extra.emplace_back("AGS2Client::Initialize^2", (void *)(AgsWorksCompat_Initialize));
-        if (dllAdaptor.IsAgsSteam)
+        if (dllAdaptor.IsAgsSteam())
         {
             compatlist_extra.emplace_back("Steam::AddAchievement^1", (void *)(AgsWorksCompat_SetAchievementAchieved));
             compatlist_extra.emplace_back("Steam::AddStat^2", (void *)(AgsWorksCompat_SetIntStat));
@@ -465,7 +465,7 @@ void AGS_EngineStartup(IAGSEngine *lpEngine)
             compatlist_extra.emplace_back("AGSteam::GetCurrentGameLanguage^0", (void *)(AgsWorksCompat_GetCurrentGameLanguage));
             compatlist_extra.emplace_back("AGSteam::FindLeaderboard^1", (void *)(AgsWorksCompat_FindLeaderboard));
         }
-        else if (dllAdaptor.IsAgsGalaxy)
+        else if (dllAdaptor.IsAgsGalaxy())
         {
             compatlist_extra.emplace_back("AGSGalaxy::IsAchievementAchieved^1", (void *)(AgsWorksCompat_IsAchievementAchieved));
             compatlist_extra.emplace_back("AGSGalaxy::SetAchievementAchieved^1", (void *)(AgsWorksCompat_SetAchievementAchieved));
