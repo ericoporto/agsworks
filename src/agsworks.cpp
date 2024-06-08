@@ -400,8 +400,9 @@ void AGS_EngineStartup(IAGSEngine *lpEngine)
     AWLog::Init(lpEngine);
 
     dllAdaptor.Init();
-    DynamicServiceLoader::get().Init(dllAdaptor.GetDllDir());
-    works = DynamicServiceLoader::get().CreateWorksDriver();
+    std::string ddl_dir = dllAdaptor.GetDllDir();
+    DynamicServiceLoader::Init(ddl_dir);
+    works = DynamicServiceLoader::CreateWorksDriver();
     if(works) {
         works->Init();
     }
@@ -528,7 +529,7 @@ void AGS_EngineShutdown()
         delete works;
         works = nullptr;
     }
-    DynamicServiceLoader::get().Shutdown();
+    DynamicServiceLoader::Shutdown();
     AWLog::Shutdown();
 }
 

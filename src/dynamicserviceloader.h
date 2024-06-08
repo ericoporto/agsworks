@@ -16,26 +16,20 @@ private:
     Library _lib = Library();
     ServiceType _type = ServiceType::eDummy;
 
+    void InitImpl(std::string &this_dll_dir);
+    AGSWorksDriver* CreateWorksDriverImpl();
+    void ShutdownImpl();
+
 public:
     static DynamicServiceLoader& get(){
         static DynamicServiceLoader instance;
         return instance;
     }
-    inline static ServiceType GetServiceType()
-    {
-        return get()._type;
-    }
-    inline static void* GetFunctionAddress(std::string &fn_name)
-    {
-        if(!(get()._lib.IsLoaded()))
-            return nullptr;
-
-        return get()._lib.GetFunctionAddress(fn_name);
-    }
-
-    void Init(std::string this_dll_dir);
-    AGSWorksDriver* CreateWorksDriver();
-    void Shutdown();
+    static ServiceType GetServiceType();
+    static void* GetFunctionAddress(const std::string &fn_name);
+    static void Init(std::string &this_dll_dir);
+    static AGSWorksDriver* CreateWorksDriver();
+    static void Shutdown();
 };
 
 } // namespace AGSWorks

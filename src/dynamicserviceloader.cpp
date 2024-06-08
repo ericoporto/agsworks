@@ -12,7 +12,7 @@
 namespace AGSWorks
 {
 
-void DynamicServiceLoader::Init(std::string this_dll_dir) {
+void DynamicServiceLoader::InitImpl(std::string &this_dll_dir) {
     auto lookup = std::vector<std::string>();
     lookup.emplace_back(".");
     lookup.emplace_back(GetCwd());
@@ -53,11 +53,11 @@ void DynamicServiceLoader::Init(std::string this_dll_dir) {
     _type = ServiceType::eDummy;
 }
 
-void DynamicServiceLoader::Shutdown() {
+void DynamicServiceLoader::ShutdownImpl() {
     // tbd
 }
 
-AGSWorksDriver* DynamicServiceLoader::CreateWorksDriver() {
+AGSWorksDriver* DynamicServiceLoader::CreateWorksDriverImpl() {
     ServiceType type = this->_type;
     switch (type) {
         case ServiceType::eDummy:
@@ -74,6 +74,34 @@ AGSWorksDriver* DynamicServiceLoader::CreateWorksDriver() {
             break;
     }
     return nullptr;
+}
+
+ServiceType DynamicServiceLoader::GetServiceType()
+{
+    return get()._type;
+}
+
+void* DynamicServiceLoader::GetFunctionAddress(const std::string &fn_name)
+{
+    if(!(get()._lib.IsLoaded()))
+        return nullptr;
+
+    return get()._lib.GetFunctionAddress(fn_name);
+}
+
+void DynamicServiceLoader::Init(std::string &this_dll_dir)
+{
+    get().InitImpl(this_dll_dir);
+}
+
+AGSWorksDriver *DynamicServiceLoader::CreateWorksDriver()
+{
+    return get().CreateWorksDriverImpl();
+}
+
+void DynamicServiceLoader::Shutdown()
+{
+    get().ShutdownImpl();
 }
 
 } // namespace AGSWorks
