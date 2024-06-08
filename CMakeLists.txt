@@ -64,11 +64,12 @@ if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/../ags/Engine/plugin/agsplugin.h")
 else ()
     include(FetchContent)
     set(FETCHCONTENT_UPDATES_DISCONNECTED on)
+    # until 3.6.1.25 is released use commit for Log in plugin API
     FetchContent_Declare(
             ags_content
             DOWNLOAD_EXTRACT_TIMESTAMP TRUE
-            URL https://github.com/adventuregamestudio/ags/archive/refs/tags/v3.6.1.24.tar.gz
-            URL_HASH SHA1=6f6d6f26441500ebc4679fc2f7fb60603d5a9e64
+            URL https://github.com/adventuregamestudio/ags/archive/69f6960ea7ad7d9e9b3797d39f79287d9d98ce14.tar.gz
+            URL_HASH SHA1=9765a08f086101f31d3416a380cbc2ede4e02090
     )
     FetchContent_GetProperties(ags_content)
     if(NOT ags_content)
