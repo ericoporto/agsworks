@@ -15,6 +15,7 @@
 #include <climits>  // For PATH_MAX
 
 #include "utils.h"
+#include "awlog.h"
 
 namespace AGSWorks
 {
@@ -59,8 +60,14 @@ namespace AGSWorks
 #else
         char buff[PATH_MAX];
 #endif
-        getcwd( buff, sizeof(buff));
-        std::string cwd( buff );
+        char* pbuf = getcwd( buff, sizeof(buff));
+        std::string cwd;
+        if(!pbuf) {
+            AWLog::LogError("getcwd failed somehow!");
+            cwd = "";
+        } else {
+            cwd = buff;
+        }
         return cwd;
     }
 
