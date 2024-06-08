@@ -57,7 +57,7 @@ void DynamicServiceLoader::Shutdown() {
     // tbd
 }
 
-AGSWorksDriver* DynamicServiceLoader::CreatetWorksDriver() {
+AGSWorksDriver* DynamicServiceLoader::CreateWorksDriver() {
     ServiceType type = this->_type;
     switch (type) {
         case ServiceType::eDummy:

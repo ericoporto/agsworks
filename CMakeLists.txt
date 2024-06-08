@@ -43,9 +43,7 @@ add_compile_definitions("_FILE_OFFSET_BITS=64")
 add_compile_definitions("$<$<CONFIG:DEBUG>:_DEBUG>")
 add_compile_definitions("$<$<CONFIG:RELEASE>:NDEBUG>")
 
-add_library(AGSWorks SHARED
-        src/misc/awlog.cpp
-        src/misc/awlog.h)
+add_library(AGSWorks SHARED)
 
 set_target_properties(AGSWorks PROPERTIES POSITION_INDEPENDENT_CODE ON)
 
@@ -106,6 +104,8 @@ target_sources(AGSWorks PRIVATE
         src/misc/library_posix.cpp
         src/misc/library_windows.cpp
         src/misc/library.h
+        src/misc/awlog.cpp
+        src/misc/awlog.h
         src/service/base/agsworksdriver.cpp
         src/service/base/agsworksdriver.h
         src/service/base/agswdummy.cpp
@@ -114,6 +114,8 @@ target_sources(AGSWorks PRIVATE
         src/service/gog/agswgog.h
         src/service/steam/agswsteam.cpp
         src/service/steam/agswsteam.h
+        src/service/steam/dynapi_steam.cpp
+        src/service/steam/dynapi_steam.h
 )
 
 install(TARGETS AGSWorks RUNTIME DESTINATION lib)

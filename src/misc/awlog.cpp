@@ -5,46 +5,73 @@
 #include "awlog.h"
 #include "plugin/agsplugin.h"
 
-namespace AGSWorks {
+namespace AGSWorks
+{
 
-    // from ags Common/debug/out.h, but not expected to change
-    enum MessageType
-    {
-        kDbgMsg_None                = 0,
-        kDbgMsg_Alert               ,
-        kDbgMsg_Fatal               ,
-        kDbgMsg_Error               ,
-        kDbgMsg_Warn                ,
-        kDbgMsg_Info                ,
-        kDbgMsg_Debug               ,
-    };
+// from ags Common/debug/out.h, but not expected to change
+enum MessageType
+{
+    kDbgMsg_None                = 0,
+    kDbgMsg_Alert               ,
+    kDbgMsg_Fatal               ,
+    kDbgMsg_Error               ,
+    kDbgMsg_Warn                ,
+    kDbgMsg_Info                ,
+    kDbgMsg_Debug               ,
+};
 
 
-void AWLog::Init(void * pengine)
+void AWLog::InitImpl(void *pengine)
 {
     auto *engine = static_cast<IAGSEngine*>(pengine);
     _system_log = (SCAPI_SYSTEM_LOG)engine->GetScriptFunctionAddress("System::Log^102");
 }
 
-void AWLog::Shutdown()
+void AWLog::ShutdownImpl()
 {
     _system_log = nullptr;
     // do nothing else
 }
 
-void AWLog::LogInfo(const std::string &msg)
+void AWLog::LogInfoImpl(const std::string &msg) const
 {
     _system_log(nullptr, kDbgMsg_Info, "%s", msg.c_str());
 }
 
-void AWLog::LogDebug(const std::string &msg)
+void AWLog::LogDebugImpl(const std::string &msg) const
 {
     _system_log(nullptr, kDbgMsg_Debug, "%s", msg.c_str());
 }
 
-void AWLog::LogError(const std::string &msg)
+void AWLog::LogErrorImpl(const std::string &msg) const
 {
     _system_log(nullptr, kDbgMsg_Error, "%s", msg.c_str());
+}
+
+
+void AWLog::Init(void * pengine)
+{
+    AWLog::get().InitImpl(pengine);
+}
+
+void AWLog::Shutdown()
+{
+    AWLog::get().ShutdownImpl();
+}
+
+void AWLog::LogInfo(const std::string &msg)
+{
+    AWLog::get().LogInfoImpl(msg);
+}
+
+void AWLog::LogDebug(const std::string &msg)
+{
+    AWLog::get().LogDebugImpl(msg);
+}
+
+void AWLog::LogError(const std::string &msg)
+{
+    AWLog::get().LogErrorImpl(msg);
 }
 
 } // namespace AGSWorks

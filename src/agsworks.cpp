@@ -397,11 +397,11 @@ void AGS_EngineStartup(IAGSEngine *lpEngine)
     {
         engine->AbortGame ("Engine interface is too old, need newer version of AGS.");
     }
-    AWLog::get().Init(lpEngine);
+    AWLog::Init(lpEngine);
 
     dllAdaptor.Init();
     DynamicServiceLoader::get().Init(dllAdaptor.GetDllDir());
-    works = DynamicServiceLoader::get().CreatetWorksDriver();
+    works = DynamicServiceLoader::get().CreateWorksDriver();
     if(works) {
         works->Init();
     }
@@ -529,7 +529,7 @@ void AGS_EngineShutdown()
         works = nullptr;
     }
     DynamicServiceLoader::get().Shutdown();
-    AWLog::get().Shutdown();
+    AWLog::Shutdown();
 }
 
 int AGS_EngineOnEvent (int event, int data)

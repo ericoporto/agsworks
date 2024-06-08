@@ -34,7 +34,7 @@ public:
     }
 
     void Init(std::string this_dll_dir);
-    AGSWorksDriver* CreatetWorksDriver();
+    AGSWorksDriver* CreateWorksDriver();
     void Shutdown();
 };
 
