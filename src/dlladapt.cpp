@@ -71,7 +71,7 @@ void DllAdapt::Init() {
 #ifdef _WIN32
     if(GetDllAbsolutePath(_dllPath, (HMODULE)_hModule))
 #else
-    if(GetDllAbsolutePath(DllPath))
+    if(GetDllAbsolutePath(_dllPath))
 #endif
     {
         _dllName = _dllPath.substr(_dllPath.find_last_of("/\\") + 1);
