@@ -115,6 +115,7 @@ target_sources(AGSWorks PRIVATE
         src/service/gog/agswgog.h
         src/service/steam/agswsteam.cpp
         src/service/steam/agswsteam.h
+        src/service/steam/min_steam_api.h
         src/service/steam/dynapi_steam.cpp
         src/service/steam/dynapi_steam.h
 )

@@ -63,6 +63,9 @@
     <ClInclude Include="..\src\service\steam\agswsteam.h">
       <Filter>Header Files\service\steam</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\service\steam\min_steam_api.h">
+      <Filter>Header Files\service\steam</Filter>
+    </ClInclude>
     <ClInclude Include="..\src\service\steam\dynapi_steam.h">
       <Filter>Header Files\service\steam</Filter>
     </ClInclude>

@@ -6,8 +6,6 @@
 namespace AGSWorks
 {
 
-
-
 void SteamWorksDriver::Init()
 {
     if(_initialized) return;
@@ -30,7 +28,7 @@ void SteamWorksDriver::Init()
     _s.SteamAPI_ManualDispatch_Init();
 
     AWLog::LogInfo("SteamWorksDriver::Init: creating steam client interface...");
-    _steamClient = _s.SteamInternal_CreateInterface(_s.STEAMCLIENT_INTERFACE_VERSION);
+    _steamClient = _s.SteamInternal_CreateInterface(STEAMCLIENT_INTERFACE_VERSION);
     AWLog::LogInfo("SteamWorksDriver::Init: steam client interface created.");
     _steamUser = _s.SteamAPI_GetHSteamUser();
     _steamPipe = _s.SteamAPI_GetHSteamPipe();
@@ -47,7 +45,7 @@ void SteamWorksDriver::Init()
             _steamClient,
             _steamUser,
             _steamPipe,
-            _s.STEAMUSERSTATS_INTERFACE_VERSION
+            STEAMUSERSTATS_INTERFACE_VERSION
     );
     if (!_steamUserStats)
     {

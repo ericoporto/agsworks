@@ -168,6 +168,7 @@
     <ClInclude Include="..\src\service\gog\agswgog.h" />
     <ClInclude Include="..\src\service\steam\agswsteam.h" />
     <ClInclude Include="..\src\service\steam\dynapi_steam.h" />
+    <ClInclude Include="..\src\service\steam\min_steam_api.h" />
     <ClInclude Include="..\\src\\agsworks.h" />
     <ClInclude Include="..\\src\\agsworksutil.h" />
     <ClInclude Include="..\\src\\dlladapt.h" />
