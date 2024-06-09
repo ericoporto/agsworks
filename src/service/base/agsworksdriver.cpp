@@ -21,6 +21,10 @@ void AGSWorksDriver::AgsWorksCompat_Initialize(const char *clientID, const char 
     // do nothing
 }
 
+void AGSWorksDriver::Update() {
+    // do nothing
+}
+
 bool AGSWorksDriver::AgsWorksCompat_IsAchievementAchieved(const char *achievment_name) {
     return false;
 }

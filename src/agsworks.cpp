@@ -520,6 +520,8 @@ void AGS_EngineStartup(IAGSEngine *lpEngine)
     {
         engine->RegisterScriptFunction(f.first.c_str(), f.second);
     }
+
+    engine->RequestEventHook(AGSE_FINALSCREENDRAW);
 }
 
 void AGS_EngineShutdown()
@@ -535,6 +537,14 @@ void AGS_EngineShutdown()
 
 int AGS_EngineOnEvent (int event, int data)
 {
+    if (event == AGSE_FINALSCREENDRAW)
+    {
+        // use this as main_game_loop
+        // the screen is drawn every actual game loop anyway
+        if(works) {
+            works->Update();
+        }
+    }
     return 0;
 }
 

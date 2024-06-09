@@ -5,6 +5,8 @@
 namespace AGSWorks
 {
 
+
+
 void SteamWorksDriver::Init()
 {
     if(_initialized) return;
@@ -29,9 +31,9 @@ void SteamWorksDriver::Init()
     AWLog::LogInfo("SteamWorksDriver::Init: creating steam client interface...");
     _steamClient = _s.SteamInternal_CreateInterface(_s.STEAMCLIENT_INTERFACE_VERSION);
     AWLog::LogInfo("SteamWorksDriver::Init: steam client interface created.");
-    HSteamUser steamUser = _s.SteamAPI_GetHSteamUser();
-    HSteamPipe steamPipe = _s.SteamAPI_GetHSteamPipe();
-    if (!_steamClient || !steamUser || !steamPipe)
+    _steamUser = _s.SteamAPI_GetHSteamUser();
+    _steamPipe = _s.SteamAPI_GetHSteamPipe();
+    if (!_steamClient || !_steamUser || !_steamPipe)
     {
         _s.SteamAPI_Shutdown();
         AWLog::LogError("SteamWorksDriver::Init error: ISteamClient Interface was not created!");
@@ -42,8 +44,8 @@ void SteamWorksDriver::Init()
     AWLog::LogInfo("SteamWorksDriver::Init: creating steam user stats interface...");
     _steamUserStats = _s.SteamAPI_ISteamClient_GetISteamUserStats(
             _steamClient,
-            steamUser,
-            steamPipe,
+            _steamUser,
+            _steamPipe,
             _s.STEAMUSERSTATS_INTERFACE_VERSION
     );
     if (!_steamUserStats)
@@ -62,8 +64,8 @@ void SteamWorksDriver::Init()
         _s.Shutdown();
         return;
     }
+    PumpCallbacks();
 
-    _initialized = true;
     AWLog::LogInfo("SteamWorksDriver::Init: initialized ok.");
 }
 
@@ -128,6 +130,50 @@ void SteamWorksDriver::AgsWorksCompat_ResetStats() {
 
 void SteamWorksDriver::AgsWorksCompat_ResetStatsAndAchievements() {
     _s.SteamAPI_ISteamUserStats_ResetAllStats(_steamUserStats, true);
+}
+
+void SteamWorksDriver::PumpCallbacks() {
+    _s.SteamAPI_ManualDispatch_RunFrame(_steamPipe);
+    CallbackMsg_t callback;
+    memset(&callback, 0, sizeof(callback));
+    while (_s.SteamAPI_ManualDispatch_GetNextCallback(_steamPipe, &callback))
+    {
+
+        // Check for dispatching API call results
+        if (callback.m_iCallback == SteamAPICallCompleted_t::k_iCallback )
+        {
+            SteamAPICallCompleted_t *pCallCompleted = (SteamAPICallCompleted_t *)callback.m_pubParam;
+            void* pTmpCallResult = malloc(callback.m_cubParam);
+            bool bFailed;
+            if (_s.SteamAPI_ManualDispatch_GetAPICallResult( _steamPipe, pCallCompleted->m_hAsyncCall, pTmpCallResult, callback.m_cubParam, callback.m_iCallback, &bFailed ) )
+            {
+                // Dispatch the call result to the registered handler(s) for the
+                // call identified by pCallCompleted->m_hAsyncCall
+            }
+            free( pTmpCallResult );
+        }
+        else
+        {
+            // Look at callback.m_iCallback to see what kind of callback it is,
+            // and dispatch to appropriate handler(s)
+            if(callback.m_iCallback == UserStatsReceived_t::k_iCallback)
+            {
+                if(!_initialized) {
+                    AWLog::LogInfo("UserStatsReceived, SteamWorksDriver initialized ok.");
+                    _initialized = true;
+                }
+            }
+            else if(callback.m_iCallback == UserStatsStored_t::k_iCallback)
+            {
+                // do something
+            }
+        }
+        _s.SteamAPI_ManualDispatch_FreeLastCallback( _steamPipe );
+    }
+}
+
+void SteamWorksDriver::Update() {
+    PumpCallbacks();
 }
 
 } // namespace AGSWorks

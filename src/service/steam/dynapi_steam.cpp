@@ -214,5 +214,23 @@ bool DynApiSteam::SteamAPI_ISteamUserStats_ResetAllStats(ISteamUserStats *self, 
     return c_SteamAPI_ISteamUserStats_ResetAllStats(self, bAchievementsToo);
 }
 
+bool DynApiSteam::SteamAPI_ManualDispatch_GetNextCallback(HSteamPipe hSteamPipe, CallbackMsg_t *pCallbackMsg) {
+    return c_SteamAPI_ManualDispatch_GetNextCallback(hSteamPipe, pCallbackMsg);
+}
+
+void DynApiSteam::SteamAPI_ManualDispatch_RunFrame(HSteamPipe hSteamPipe) {
+    c_SteamAPI_ManualDispatch_RunFrame(hSteamPipe);
+}
+
+void DynApiSteam::SteamAPI_ManualDispatch_FreeLastCallback(HSteamPipe hSteamPipe) {
+    c_SteamAPI_ManualDispatch_FreeLastCallback(hSteamPipe);
+}
+
+bool DynApiSteam::SteamAPI_ManualDispatch_GetAPICallResult(HSteamPipe hSteamPipe, SteamAPICall_t hSteamAPICall,
+                                                           void *pCallback, int cubCallback, int iCallbackExpected,
+                                                           bool *pbFailed) {
+    return c_SteamAPI_ManualDispatch_GetAPICallResult(hSteamPipe, hSteamAPICall, pCallback, cubCallback, iCallbackExpected, pbFailed);
+}
+
 
 } // namespace AGSWorks

@@ -13,12 +13,17 @@ private:
     bool _initialized = false;
     ISteamClient* _steamClient = nullptr;
     ISteamUserStats* _steamUserStats = nullptr;
+    HSteamUser _steamUser;
+    HSteamPipe _steamPipe;
+
+    void PumpCallbacks();
 
 public:
     static SteamWorksDriver* CreateDriver();
     ServiceType GetServiceType() override;
     void Init() override;
     void Shutdown() override;
+    void Update() override;
     bool AgsWorksCompat_IsInitialized() override;
     bool AgsWorksCompat_IsAchievementAchieved(const char* achievment_name) override;
     bool AgsWorksCompat_SetAchievementAchieved(const char* achievment_name) override;

@@ -23,6 +23,7 @@ public:
     virtual void Shutdown();
     virtual ServiceType GetServiceType();
     virtual void Init();
+    virtual void Update();
 
     virtual void AgsWorksCompat_Initialize(const char *clientID, const char *clientSecret);
     virtual bool AgsWorksCompat_IsAchievementAchieved(const char* achievment_name);

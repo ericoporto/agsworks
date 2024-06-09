@@ -13,7 +13,10 @@ namespace AGSWorks {
     // handle to single instance of a steam user
     typedef int32_t HSteamUser;
 
+    enum { k_iSteamUtilsCallbacks = 700 };
     enum { k_iSteamUserStatsCallbacks = 1100 };
+
+    enum { k_cchStatNameMax = 128 };
 
     enum EResult
     {
@@ -162,6 +165,10 @@ namespace AGSWorks {
     struct ISteamScreenshots;
     struct ISteamUserStats;
 
+    // handle to a Steam API call
+    typedef uint64_t SteamAPICall_t;
+    const SteamAPICall_t k_uAPICallInvalid = 0x0;
+
     struct CallbackMsg_t {
         HSteamUser m_hSteamUser;
         int32_t m_iCallback;
@@ -209,12 +216,29 @@ namespace AGSWorks {
         EResult        m_eResult;        // Success / error fetching the stats
         CSteamID    m_steamIDUser;    // The user for whom the stats are retrieved for
     };
-    struct SteamAPICallCompleted_t {
-        uint64_t m_hAsyncCall;
-        int32_t m_iCallback;
+    struct UserStatsStored_t
+    {
+        enum { k_iCallback = k_iSteamUserStatsCallbacks + 2 };
+        uint64_t		m_nGameID;		// Game these stats are for
+        EResult		m_eResult;		// success / error
+    };
+    struct UserAchievementStored_t
+    {
+        enum { k_iCallback = k_iSteamUserStatsCallbacks + 3 };
+
+        uint64_t		m_nGameID;				// Game this is for
+        bool		m_bGroupAchievement;	// if this is a "group" achievement
+        char		m_rgchAchievementName[k_cchStatNameMax];		// name of the achievement
+        uint32_t		m_nCurProgress;			// current progress towards the achievement
+        uint32_t		m_nMaxProgress;			// "out of" this many
+    };
+    struct SteamAPICallCompleted_t
+    {
+        enum { k_iCallback = k_iSteamUtilsCallbacks + 3 };
+        SteamAPICall_t m_hAsyncCall;
+        int m_iCallback;
         uint32_t m_cubParam;
     };
-
 
     const int k_cchMaxSteamErrMsg = 1024;
     typedef char SteamErrMsg[ k_cchMaxSteamErrMsg ];
@@ -274,7 +298,7 @@ namespace AGSWorks {
         C_STEAMAPI_MANUALDISPATCH_GETNEXTCALLBACK c_SteamAPI_ManualDispatch_GetNextCallback;
         using C_STEAMAPI_MANUALDISPATCH_FREELASTCALLBACK = void (*)(int32_t);
         C_STEAMAPI_MANUALDISPATCH_FREELASTCALLBACK c_SteamAPI_ManualDispatch_FreeLastCallback;
-        using C_STEAMAPI_MANUALDISPATCH_GETAPICALLRESULT =  uint8_t (*)(int32_t, uint64_t, void *, int32_t, int32_t, uint8_t *);
+        using C_STEAMAPI_MANUALDISPATCH_GETAPICALLRESULT =  uint8_t (*)(int32_t, uint64_t, void *, int32_t, int32_t, bool *);
         C_STEAMAPI_MANUALDISPATCH_GETAPICALLRESULT c_SteamAPI_ManualDispatch_GetAPICallResult;
 
     public:
@@ -300,6 +324,11 @@ namespace AGSWorks {
         ISteamClient *SteamInternal_CreateInterface(const char *string);
         HSteamUser SteamAPI_GetHSteamUser();
         HSteamPipe SteamAPI_GetHSteamPipe();
+        void SteamAPI_ManualDispatch_RunFrame(HSteamPipe hSteamPipe);
+        bool SteamAPI_ManualDispatch_GetNextCallback(HSteamPipe hSteamPipe, CallbackMsg_t *pCallbackMsg);
+        void SteamAPI_ManualDispatch_FreeLastCallback(HSteamPipe hSteamPipe );
+        bool SteamAPI_ManualDispatch_GetAPICallResult(HSteamPipe hSteamPipe, SteamAPICall_t hSteamAPICall, void *pCallback, int cubCallback, int iCallbackExpected, bool *pbFailed);
+
     };
 
 }
