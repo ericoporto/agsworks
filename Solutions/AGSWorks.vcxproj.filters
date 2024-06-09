@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\misc">
+      <UniqueIdentifier>{e2d61459-ca5f-42c6-a82a-bf28260225b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\service">
+      <UniqueIdentifier>{33c39f22-bf1b-43df-8ffa-33640f1bc462}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\service\base">
+      <UniqueIdentifier>{7a8858f1-3f65-43fa-97d1-c3902fe14a8c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\service\gog">
+      <UniqueIdentifier>{2179664b-50e0-414c-a2de-4c724247abe5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\service\steam">
+      <UniqueIdentifier>{4ee2c486-f8b7-458d-8bbc-bfaebee9459d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\misc">
+      <UniqueIdentifier>{98773233-10e3-44d6-89fe-a1cf78c5344f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\service">
+      <UniqueIdentifier>{b52f4195-1fc0-4337-8b3d-d61db8ef37c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\service\base">
+      <UniqueIdentifier>{6b5700c1-8eb4-4572-9844-a65186876e22}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\service\gog">
+      <UniqueIdentifier>{d24a536d-c694-42bc-b0c8-509e68dd768b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\service\steam">
+      <UniqueIdentifier>{c9b14aa9-deee-4d96-9f74-96499253f8a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AGS">
+      <UniqueIdentifier>{5a72b8df-4a4c-453b-9cc9-fce7eb73fad2}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\\src\\agsworks.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\\src\\agsworksutil.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\\src\\dlladapt.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\\src\\dynamicserviceloader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\service\steam\agswsteam.h">
+      <Filter>Header Files\service\steam</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\service\steam\dynapi_steam.h">
+      <Filter>Header Files\service\steam</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\service\base\agswdummy.h">
+      <Filter>Header Files\service\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\service\base\agsworksdriver.h">
+      <Filter>Header Files\service\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\service\gog\agswgog.h">
+      <Filter>Header Files\service\gog</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\misc\awlog.h">
+      <Filter>Header Files\misc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\misc\base_library.h">
+      <Filter>Header Files\misc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\misc\library.h">
+      <Filter>Header Files\misc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\misc\library_posix.h">
+      <Filter>Header Files\misc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\misc\library_windows.h">
+      <Filter>Header Files\misc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\misc\utils.h">
+      <Filter>Header Files\misc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ags\Common\core\platform.h">
+      <Filter>AGS</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ags\Engine\plugin\agsplugin.h">
+      <Filter>AGS</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\\src\\agsworks.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\\src\\dlladapt.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\\src\\dynamicserviceloader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\service\steam\agswsteam.cpp">
+      <Filter>Source Files\service\steam</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\service\steam\dynapi_steam.cpp">
+      <Filter>Source Files\service\steam</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\service\base\agswdummy.cpp">
+      <Filter>Source Files\service\base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\service\base\agsworksdriver.cpp">
+      <Filter>Source Files\service\base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\service\gog\agswgog.cpp">
+      <Filter>Source Files\service\gog</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\misc\awlog.cpp">
+      <Filter>Source Files\misc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\misc\library_posix.cpp">
+      <Filter>Source Files\misc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\misc\library_windows.cpp">
+      <Filter>Source Files\misc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\misc\utils.cpp">
+      <Filter>Source Files\misc</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
