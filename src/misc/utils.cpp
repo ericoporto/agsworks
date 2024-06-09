@@ -72,7 +72,7 @@ namespace AGSWorks
         return cwd;
     }
 
-    void AgsWorksZeroImpl(void*  dst, size_t dst_size)
+    void AgsWorksZeroImpl(void* dst, size_t dst_size)
     {
         memset(dst, 0, dst_size);
     }
