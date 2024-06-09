@@ -12,6 +12,8 @@ namespace AGSWorks
     void FixupPath(std::string &path);
     std::string ConcatPaths(std::string parent, std::string child);
     std::string GetCwd();
+    void AgsWorksZeroImpl(void*  dst, size_t dst_size);
+    #define AW_Zero(x) AgsWorksZeroImpl(&(x), sizeof((x)))
 } // namespace AGSWorks
 
 

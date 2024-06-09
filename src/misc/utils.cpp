@@ -13,6 +13,7 @@
 #include <unistd.h>
 #endif
 #include <climits>  // For PATH_MAX
+#include <cstring>
 
 #include "utils.h"
 #include "awlog.h"
@@ -69,6 +70,11 @@ namespace AGSWorks
             cwd = buff;
         }
         return cwd;
+    }
+
+    void AgsWorksZeroImpl(void*  dst, size_t dst_size)
+    {
+        memset(dst, 0, dst_size);
     }
 
 } // namespace AGSWorks

@@ -1,6 +1,7 @@
 
 #include "agswsteam.h"
 #include "misc/awlog.h"
+#include "misc/utils.h"
 
 namespace AGSWorks
 {
@@ -135,7 +136,7 @@ void SteamWorksDriver::AgsWorksCompat_ResetStatsAndAchievements() {
 void SteamWorksDriver::PumpCallbacks() {
     _s.SteamAPI_ManualDispatch_RunFrame(_steamPipe);
     CallbackMsg_t callback;
-    memset(&callback, 0, sizeof(callback));
+    AW_Zero(callback);
     while (_s.SteamAPI_ManualDispatch_GetNextCallback(_steamPipe, &callback))
     {
 
