@@ -11,7 +11,7 @@ build_linux_task:
       - BUILD_TYPE: release
   setup_agscode_script: |
     pushd ..
-    url="https://github.com/adventuregamestudio/ags/archive/refs/tags/v3.6.1.24.tar.gz"
+    url="https://github.com/adventuregamestudio/ags/archive/645573fc483ee1b7de73df2910f3c0b768d6a60d.tar.gz"
     mkdir ags && curl -fLSs "$url" | tar -f - -xvzC ags --strip-components 1
     popd
   setup_destdir_script: |
