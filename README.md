@@ -31,3 +31,5 @@ A Linux and macOS compatible Makefile is also provided.
     ├── ags
     └── agsworks
 ```
+
+For now, ags repository is only used to include two header files `../ags/Common/core/platform.h` and `../ags/Engine/plugin/agsplugin.h`.
