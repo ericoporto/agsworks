@@ -183,3 +183,7 @@ iOS/Resources
 
 # ignore libraries dependencies manually placed in Editor
 Editor/References/**/*.dll
+
+# ignore libraries built here
+*.so
+*.dylib
