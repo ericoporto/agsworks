@@ -5,6 +5,7 @@
 
 namespace agsworks
 {
+  const char* AGS_GetPluginName();
   void AGS_EngineStartup(IAGSEngine *lpEngine);
   void AGS_EngineShutdown();
   int AGS_EngineOnEvent(int event, int data);
