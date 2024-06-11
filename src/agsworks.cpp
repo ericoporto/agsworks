@@ -81,7 +81,7 @@ const char *ourScriptHeader =
       "  eAgsWorksScoresRequestFriends = 2\r\n"
       "};\r\n"
       "\r\n"
-      "managed struct AgsWorks\r\n"
+      "managed struct AgsWorksCompat\r\n"
       "{\r\n"
       "  /// Returns whether the specified achievement has been achieved\r\n"
       "  import static int IsAchievementAchieved(const string name);\r\n"
