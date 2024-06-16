@@ -1,0 +1,493 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		20599BEB2C1F6EDD00B0DD16 /* dynamicserviceloader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 20599BE22C1F6EDD00B0DD16 /* dynamicserviceloader.cpp */; };
+		20599BEC2C1F6EDD00B0DD16 /* agsworks.h in Headers */ = {isa = PBXBuildFile; fileRef = 20599BE32C1F6EDD00B0DD16 /* agsworks.h */; };
+		20599BED2C1F6EDD00B0DD16 /* agsworks.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 20599BE42C1F6EDD00B0DD16 /* agsworks.cpp */; };
+		20599BEE2C1F6EDD00B0DD16 /* dlladapt.h in Headers */ = {isa = PBXBuildFile; fileRef = 20599BE52C1F6EDD00B0DD16 /* dlladapt.h */; };
+		20599BEF2C1F6EDD00B0DD16 /* agsworksutil.h in Headers */ = {isa = PBXBuildFile; fileRef = 20599BE62C1F6EDD00B0DD16 /* agsworksutil.h */; };
+		20599BF02C1F6EDD00B0DD16 /* dlladapt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 20599BE92C1F6EDD00B0DD16 /* dlladapt.cpp */; };
+		20599BF12C1F6EDD00B0DD16 /* dynamicserviceloader.h in Headers */ = {isa = PBXBuildFile; fileRef = 20599BEA2C1F6EDD00B0DD16 /* dynamicserviceloader.h */; };
+		20599C132C1F708600B0DD16 /* agswsteam.h in Headers */ = {isa = PBXBuildFile; fileRef = 20599C0E2C1F708600B0DD16 /* agswsteam.h */; };
+		20599C142C1F708600B0DD16 /* dynapi_steam.h in Headers */ = {isa = PBXBuildFile; fileRef = 20599C0F2C1F708600B0DD16 /* dynapi_steam.h */; };
+		20599C152C1F708600B0DD16 /* min_steam_api.h in Headers */ = {isa = PBXBuildFile; fileRef = 20599C102C1F708600B0DD16 /* min_steam_api.h */; };
+		20599C162C1F708600B0DD16 /* agswsteam.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 20599C112C1F708600B0DD16 /* agswsteam.cpp */; };
+		20599C172C1F708600B0DD16 /* dynapi_steam.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 20599C122C1F708600B0DD16 /* dynapi_steam.cpp */; };
+		20599C1A2C1F708D00B0DD16 /* agswgog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 20599C182C1F708D00B0DD16 /* agswgog.cpp */; };
+		20599C1B2C1F708D00B0DD16 /* agswgog.h in Headers */ = {isa = PBXBuildFile; fileRef = 20599C192C1F708D00B0DD16 /* agswgog.h */; };
+		20599C202C1F709500B0DD16 /* agswdummy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 20599C1C2C1F709500B0DD16 /* agswdummy.cpp */; };
+		20599C212C1F709500B0DD16 /* agsworksdriver.h in Headers */ = {isa = PBXBuildFile; fileRef = 20599C1D2C1F709500B0DD16 /* agsworksdriver.h */; };
+		20599C222C1F709500B0DD16 /* agswdummy.h in Headers */ = {isa = PBXBuildFile; fileRef = 20599C1E2C1F709500B0DD16 /* agswdummy.h */; };
+		20599C232C1F709500B0DD16 /* agsworksdriver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 20599C1F2C1F709500B0DD16 /* agsworksdriver.cpp */; };
+		20599C2E2C1F709D00B0DD16 /* library_posix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 20599C242C1F709C00B0DD16 /* library_posix.cpp */; };
+		20599C2F2C1F709D00B0DD16 /* base_library.h in Headers */ = {isa = PBXBuildFile; fileRef = 20599C252C1F709C00B0DD16 /* base_library.h */; };
+		20599C302C1F709D00B0DD16 /* library.h in Headers */ = {isa = PBXBuildFile; fileRef = 20599C262C1F709C00B0DD16 /* library.h */; };
+		20599C312C1F709D00B0DD16 /* utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 20599C272C1F709C00B0DD16 /* utils.cpp */; };
+		20599C322C1F709D00B0DD16 /* utils.h in Headers */ = {isa = PBXBuildFile; fileRef = 20599C282C1F709C00B0DD16 /* utils.h */; };
+		20599C332C1F709D00B0DD16 /* awlog.h in Headers */ = {isa = PBXBuildFile; fileRef = 20599C292C1F709C00B0DD16 /* awlog.h */; };
+		20599C342C1F709D00B0DD16 /* library_windows.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 20599C2A2C1F709D00B0DD16 /* library_windows.cpp */; };
+		20599C352C1F709D00B0DD16 /* awlog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 20599C2B2C1F709D00B0DD16 /* awlog.cpp */; };
+		20599C362C1F709D00B0DD16 /* library_windows.h in Headers */ = {isa = PBXBuildFile; fileRef = 20599C2C2C1F709D00B0DD16 /* library_windows.h */; };
+		20599C372C1F709D00B0DD16 /* library_posix.h in Headers */ = {isa = PBXBuildFile; fileRef = 20599C2D2C1F709D00B0DD16 /* library_posix.h */; };
+		20599C3A2C1F711900B0DD16 /* libdl.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 20599C392C1F711900B0DD16 /* libdl.tbd */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		20599BE22C1F6EDD00B0DD16 /* dynamicserviceloader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = dynamicserviceloader.cpp; sourceTree = "<group>"; };
+		20599BE32C1F6EDD00B0DD16 /* agsworks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = agsworks.h; sourceTree = "<group>"; };
+		20599BE42C1F6EDD00B0DD16 /* agsworks.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = agsworks.cpp; sourceTree = "<group>"; };
+		20599BE52C1F6EDD00B0DD16 /* dlladapt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dlladapt.h; sourceTree = "<group>"; };
+		20599BE62C1F6EDD00B0DD16 /* agsworksutil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = agsworksutil.h; sourceTree = "<group>"; };
+		20599BE92C1F6EDD00B0DD16 /* dlladapt.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = dlladapt.cpp; sourceTree = "<group>"; };
+		20599BEA2C1F6EDD00B0DD16 /* dynamicserviceloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dynamicserviceloader.h; sourceTree = "<group>"; };
+		20599C0E2C1F708600B0DD16 /* agswsteam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = agswsteam.h; sourceTree = "<group>"; };
+		20599C0F2C1F708600B0DD16 /* dynapi_steam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dynapi_steam.h; sourceTree = "<group>"; };
+		20599C102C1F708600B0DD16 /* min_steam_api.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = min_steam_api.h; sourceTree = "<group>"; };
+		20599C112C1F708600B0DD16 /* agswsteam.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = agswsteam.cpp; sourceTree = "<group>"; };
+		20599C122C1F708600B0DD16 /* dynapi_steam.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = dynapi_steam.cpp; sourceTree = "<group>"; };
+		20599C182C1F708D00B0DD16 /* agswgog.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = agswgog.cpp; sourceTree = "<group>"; };
+		20599C192C1F708D00B0DD16 /* agswgog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = agswgog.h; sourceTree = "<group>"; };
+		20599C1C2C1F709500B0DD16 /* agswdummy.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = agswdummy.cpp; sourceTree = "<group>"; };
+		20599C1D2C1F709500B0DD16 /* agsworksdriver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = agsworksdriver.h; sourceTree = "<group>"; };
+		20599C1E2C1F709500B0DD16 /* agswdummy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = agswdummy.h; sourceTree = "<group>"; };
+		20599C1F2C1F709500B0DD16 /* agsworksdriver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = agsworksdriver.cpp; sourceTree = "<group>"; };
+		20599C242C1F709C00B0DD16 /* library_posix.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = library_posix.cpp; sourceTree = "<group>"; };
+		20599C252C1F709C00B0DD16 /* base_library.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = base_library.h; sourceTree = "<group>"; };
+		20599C262C1F709C00B0DD16 /* library.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = library.h; sourceTree = "<group>"; };
+		20599C272C1F709C00B0DD16 /* utils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = utils.cpp; sourceTree = "<group>"; };
+		20599C282C1F709C00B0DD16 /* utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utils.h; sourceTree = "<group>"; };
+		20599C292C1F709C00B0DD16 /* awlog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = awlog.h; sourceTree = "<group>"; };
+		20599C2A2C1F709D00B0DD16 /* library_windows.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = library_windows.cpp; sourceTree = "<group>"; };
+		20599C2B2C1F709D00B0DD16 /* awlog.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = awlog.cpp; sourceTree = "<group>"; };
+		20599C2C2C1F709D00B0DD16 /* library_windows.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = library_windows.h; sourceTree = "<group>"; };
+		20599C2D2C1F709D00B0DD16 /* library_posix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = library_posix.h; sourceTree = "<group>"; };
+		20599C392C1F711900B0DD16 /* libdl.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libdl.tbd; path = usr/lib/libdl.tbd; sourceTree = SDKROOT; };
+		20629DA52C1F3C6300945EAB /* libAGSWorks.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libAGSWorks.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		20629DA32C1F3C6300945EAB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				20599C3A2C1F711900B0DD16 /* libdl.tbd in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		20599C092C1F700B00B0DD16 /* misc */ = {
+			isa = PBXGroup;
+			children = (
+				20599C2B2C1F709D00B0DD16 /* awlog.cpp */,
+				20599C292C1F709C00B0DD16 /* awlog.h */,
+				20599C252C1F709C00B0DD16 /* base_library.h */,
+				20599C242C1F709C00B0DD16 /* library_posix.cpp */,
+				20599C2D2C1F709D00B0DD16 /* library_posix.h */,
+				20599C2A2C1F709D00B0DD16 /* library_windows.cpp */,
+				20599C2C2C1F709D00B0DD16 /* library_windows.h */,
+				20599C262C1F709C00B0DD16 /* library.h */,
+				20599C272C1F709C00B0DD16 /* utils.cpp */,
+				20599C282C1F709C00B0DD16 /* utils.h */,
+			);
+			path = misc;
+			sourceTree = "<group>";
+		};
+		20599C0A2C1F701100B0DD16 /* service */ = {
+			isa = PBXGroup;
+			children = (
+				20599C0D2C1F702C00B0DD16 /* steam */,
+				20599C0C2C1F702700B0DD16 /* gog */,
+				20599C0B2C1F701F00B0DD16 /* base */,
+			);
+			path = service;
+			sourceTree = "<group>";
+		};
+		20599C0B2C1F701F00B0DD16 /* base */ = {
+			isa = PBXGroup;
+			children = (
+				20599C1C2C1F709500B0DD16 /* agswdummy.cpp */,
+				20599C1E2C1F709500B0DD16 /* agswdummy.h */,
+				20599C1F2C1F709500B0DD16 /* agsworksdriver.cpp */,
+				20599C1D2C1F709500B0DD16 /* agsworksdriver.h */,
+			);
+			path = base;
+			sourceTree = "<group>";
+		};
+		20599C0C2C1F702700B0DD16 /* gog */ = {
+			isa = PBXGroup;
+			children = (
+				20599C182C1F708D00B0DD16 /* agswgog.cpp */,
+				20599C192C1F708D00B0DD16 /* agswgog.h */,
+			);
+			path = gog;
+			sourceTree = "<group>";
+		};
+		20599C0D2C1F702C00B0DD16 /* steam */ = {
+			isa = PBXGroup;
+			children = (
+				20599C112C1F708600B0DD16 /* agswsteam.cpp */,
+				20599C0E2C1F708600B0DD16 /* agswsteam.h */,
+				20599C122C1F708600B0DD16 /* dynapi_steam.cpp */,
+				20599C0F2C1F708600B0DD16 /* dynapi_steam.h */,
+				20599C102C1F708600B0DD16 /* min_steam_api.h */,
+			);
+			path = steam;
+			sourceTree = "<group>";
+		};
+		20599C382C1F711900B0DD16 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				20599C392C1F711900B0DD16 /* libdl.tbd */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		20629D9C2C1F3C6300945EAB = {
+			isa = PBXGroup;
+			children = (
+				20629DA72C1F3C6300945EAB /* AGSWorks */,
+				20629DA62C1F3C6300945EAB /* Products */,
+				20599C382C1F711900B0DD16 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		20629DA62C1F3C6300945EAB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				20629DA52C1F3C6300945EAB /* libAGSWorks.dylib */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		20629DA72C1F3C6300945EAB /* AGSWorks */ = {
+			isa = PBXGroup;
+			children = (
+				20599C0A2C1F701100B0DD16 /* service */,
+				20599C092C1F700B00B0DD16 /* misc */,
+				20599BE42C1F6EDD00B0DD16 /* agsworks.cpp */,
+				20599BE32C1F6EDD00B0DD16 /* agsworks.h */,
+				20599BE62C1F6EDD00B0DD16 /* agsworksutil.h */,
+				20599BE92C1F6EDD00B0DD16 /* dlladapt.cpp */,
+				20599BE52C1F6EDD00B0DD16 /* dlladapt.h */,
+				20599BE22C1F6EDD00B0DD16 /* dynamicserviceloader.cpp */,
+				20599BEA2C1F6EDD00B0DD16 /* dynamicserviceloader.h */,
+			);
+			name = AGSWorks;
+			path = ../../src;
+			sourceTree = SOURCE_ROOT;
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		20629DA12C1F3C6300945EAB /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				20599C142C1F708600B0DD16 /* dynapi_steam.h in Headers */,
+				20599C152C1F708600B0DD16 /* min_steam_api.h in Headers */,
+				20599C322C1F709D00B0DD16 /* utils.h in Headers */,
+				20599BEE2C1F6EDD00B0DD16 /* dlladapt.h in Headers */,
+				20599C362C1F709D00B0DD16 /* library_windows.h in Headers */,
+				20599BF12C1F6EDD00B0DD16 /* dynamicserviceloader.h in Headers */,
+				20599C2F2C1F709D00B0DD16 /* base_library.h in Headers */,
+				20599BEC2C1F6EDD00B0DD16 /* agsworks.h in Headers */,
+				20599C222C1F709500B0DD16 /* agswdummy.h in Headers */,
+				20599C212C1F709500B0DD16 /* agsworksdriver.h in Headers */,
+				20599C332C1F709D00B0DD16 /* awlog.h in Headers */,
+				20599C302C1F709D00B0DD16 /* library.h in Headers */,
+				20599C372C1F709D00B0DD16 /* library_posix.h in Headers */,
+				20599C132C1F708600B0DD16 /* agswsteam.h in Headers */,
+				20599C1B2C1F708D00B0DD16 /* agswgog.h in Headers */,
+				20599BEF2C1F6EDD00B0DD16 /* agsworksutil.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		20629DA42C1F3C6300945EAB /* AGSWorks */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 20629DB02C1F3C6300945EAB /* Build configuration list for PBXNativeTarget "AGSWorks" */;
+			buildPhases = (
+				20629DA12C1F3C6300945EAB /* Headers */,
+				20629DA22C1F3C6300945EAB /* Sources */,
+				20629DA32C1F3C6300945EAB /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AGSWorks;
+			productName = AGSWorks;
+			productReference = 20629DA52C1F3C6300945EAB /* libAGSWorks.dylib */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		20629D9D2C1F3C6300945EAB /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					20629DA42C1F3C6300945EAB = {
+						CreatedOnToolsVersion = 15.0.1;
+					};
+				};
+			};
+			buildConfigurationList = 20629DA02C1F3C6300945EAB /* Build configuration list for PBXProject "AGSWorks" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 20629D9C2C1F3C6300945EAB;
+			productRefGroup = 20629DA62C1F3C6300945EAB /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				20629DA42C1F3C6300945EAB /* AGSWorks */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		20629DA22C1F3C6300945EAB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				20599C232C1F709500B0DD16 /* agsworksdriver.cpp in Sources */,
+				20599C312C1F709D00B0DD16 /* utils.cpp in Sources */,
+				20599BF02C1F6EDD00B0DD16 /* dlladapt.cpp in Sources */,
+				20599C202C1F709500B0DD16 /* agswdummy.cpp in Sources */,
+				20599C352C1F709D00B0DD16 /* awlog.cpp in Sources */,
+				20599C1A2C1F708D00B0DD16 /* agswgog.cpp in Sources */,
+				20599C172C1F708600B0DD16 /* dynapi_steam.cpp in Sources */,
+				20599BED2C1F6EDD00B0DD16 /* agsworks.cpp in Sources */,
+				20599C162C1F708600B0DD16 /* agswsteam.cpp in Sources */,
+				20599C2E2C1F709D00B0DD16 /* library_posix.cpp in Sources */,
+				20599C342C1F709D00B0DD16 /* library_windows.cpp in Sources */,
+				20599BEB2C1F6EDD00B0DD16 /* dynamicserviceloader.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		20629DAE2C1F3C6300945EAB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					../../../ags/Engine,
+					../../../ags/Common,
+					../../src/service,
+					"../../src/**",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		20629DAF2C1F3C6300945EAB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					../../../ags/Engine,
+					../../../ags/Common,
+					../../src/service,
+					"../../src/**",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = YES;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		20629DB12C1F3C6300945EAB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2Y58QRT4D5;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				EXECUTABLE_PREFIX = lib;
+				GCC_ENABLE_CPP_EXCEPTIONS = YES;
+				GCC_ENABLE_CPP_RTTI = YES;
+				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
+				HEADER_SEARCH_PATHS = (
+					../../../ags/Engine,
+					../../../ags/Common,
+					../../src/service,
+					"../../src/**",
+					../../src,
+				);
+				OTHER_LDFLAGS = "-ldl";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				USER_HEADER_SEARCH_PATHS = ../../src;
+			};
+			name = Debug;
+		};
+		20629DB22C1F3C6300945EAB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2Y58QRT4D5;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				EXECUTABLE_PREFIX = lib;
+				GCC_ENABLE_CPP_EXCEPTIONS = YES;
+				GCC_ENABLE_CPP_RTTI = YES;
+				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
+				HEADER_SEARCH_PATHS = (
+					../../../ags/Engine,
+					../../../ags/Common,
+					../../src/service,
+					"../../src/**",
+					../../src,
+				);
+				OTHER_LDFLAGS = "-ldl";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				USER_HEADER_SEARCH_PATHS = ../../src;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		20629DA02C1F3C6300945EAB /* Build configuration list for PBXProject "AGSWorks" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				20629DAE2C1F3C6300945EAB /* Debug */,
+				20629DAF2C1F3C6300945EAB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		20629DB02C1F3C6300945EAB /* Build configuration list for PBXNativeTarget "AGSWorks" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				20629DB12C1F3C6300945EAB /* Debug */,
+				20629DB22C1F3C6300945EAB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 20629D9D2C1F3C6300945EAB /* Project object */;
+}
