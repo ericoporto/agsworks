@@ -7,7 +7,9 @@
 #include "Windows.h"
 #include "awlog.h"
 
-AGSWorks::WindowsLibrary::WindowsLibrary(AGSWorks::WindowsLibrary &&other)
+namespace AGSWorks {
+
+WindowsLibrary::WindowsLibrary(AGSWorks::WindowsLibrary &&other)
 {
     _library = other._library;
     other._library = nullptr;
@@ -16,17 +18,17 @@ AGSWorks::WindowsLibrary::WindowsLibrary(AGSWorks::WindowsLibrary &&other)
     _path = std::move(other._path);
 }
 
-AGSWorks::WindowsLibrary::~WindowsLibrary()
+WindowsLibrary::~WindowsLibrary()
 {
     Unload();
 }
 
-std::string AGSWorks::WindowsLibrary::GetFilenameForLib(std::string libname)
+std::string WindowsLibrary::GetFilenameForLib(std::string libname)
 {
     return libname + ".dll";
 }
 
-bool AGSWorks::WindowsLibrary::Load(std::string libname, std::vector<std::string> lookup)
+bool WindowsLibrary::Load(std::string libname, std::vector<std::string> lookup)
 {
     Unload();
     std::string libfile = GetFilenameForLib(libname);
@@ -41,7 +43,7 @@ bool AGSWorks::WindowsLibrary::Load(std::string libname, std::vector<std::string
     return true;
 }
 
-void AGSWorks::WindowsLibrary::Unload()
+void WindowsLibrary::Unload()
 {
     if (_library)
     {
@@ -53,19 +55,19 @@ void AGSWorks::WindowsLibrary::Unload()
     }
 }
 
-bool AGSWorks::WindowsLibrary::IsLoaded() const
+bool WindowsLibrary::IsLoaded() const
 {
     return _library != nullptr;
 }
 
-void *AGSWorks::WindowsLibrary::GetFunctionAddress(const std::string &fn_name)
+void *WindowsLibrary::GetFunctionAddress(const std::string &fn_name)
 {
     if (!_library)
         return nullptr;
     return reinterpret_cast<void *>(GetProcAddress(static_cast<HMODULE>(_library), fn_name.c_str()));
 }
 
-void *AGSWorks::WindowsLibrary::TryLoad(const std::string &path)
+void *WindowsLibrary::TryLoad(const std::string &path)
 {
     std::string log_msg = "Try library path：　";
     log_msg += path;
@@ -75,8 +77,7 @@ void *AGSWorks::WindowsLibrary::TryLoad(const std::string &path)
     return LoadLibraryW(wpath);
 }
 
-void *
-AGSWorks::WindowsLibrary::TryLoadAnywhere(const std::string &libfile, const std::vector<std::string> &lookup, std::string &path)
+void *WindowsLibrary::TryLoadAnywhere(const std::string &libfile, const std::vector<std::string> &lookup, std::string &path)
 {
     // First try default system search
     path = libfile;
@@ -95,5 +96,7 @@ AGSWorks::WindowsLibrary::TryLoadAnywhere(const std::string &libfile, const std:
 
     return nullptr;
 }
+
+} // namespace AGSWorks
 
 #endif // AGS_PLATFORM_OS_WINDOWS

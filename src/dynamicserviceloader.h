@@ -19,6 +19,7 @@ private:
     void InitImpl(std::string &this_dll_dir);
     AGSWorksDriver* CreateWorksDriverImpl();
     void ShutdownImpl();
+    void* GetFunctionAddressImpl(const std::string &fn_name);
 
 public:
     static DynamicServiceLoader& get(){

@@ -24,7 +24,6 @@ enum MessageType
 void AWLog::InitImpl(void *pengine)
 {
     _pengine = pengine;
-    auto *engine = static_cast<IAGSEngine*>(_pengine);
 }
 
 void AWLog::ShutdownImpl()

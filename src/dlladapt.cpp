@@ -39,7 +39,7 @@ bool GetDllAbsolutePath(std::string& path)
     uint32_t size = sizeof(dirtybuffer);
     if (_NSGetExecutablePath(dirtybuffer, &size) == 0) {
         realpath(dirtybuffer, buffer);
-        len = strlen(buffer);
+        len = static_cast<int>(strlen(buffer));
     }
     #elif defined(__FreeBSD__)
     char buffer[PATH_MAX];

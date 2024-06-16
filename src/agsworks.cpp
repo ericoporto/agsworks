@@ -57,9 +57,11 @@ BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserv
 }
 #define LIBRARY_API
 #define EXPORT comment(linker, "/EXPORT:" __FUNCTION__ "=" __FUNCDNAME__)
+#define DO_PRAGMA_EXPORT 1
 #else
 #define LIBRARY_API extern "C"
 #define EXPORT
+#define DO_PRAGMA_EXPORT 0
 #endif // _WIN32
 
 // ***** DESIGN TIME CALLS *******
@@ -128,7 +130,9 @@ const char *ourScriptHeader =
 
 LIBRARY_API int AGS_EditorStartup(IAGSEditor *lpEditor)
 {
-    #pragma EXPORT
+#if DO_PRAGMA_EXPORT
+#pragma EXPORT
+#endif
     if (lpEditor->version < 1)
         return -1;
 
@@ -139,24 +143,32 @@ LIBRARY_API int AGS_EditorStartup(IAGSEditor *lpEditor)
 
 LIBRARY_API void AGS_EditorShutdown()
 {
-    #pragma EXPORT
+#if DO_PRAGMA_EXPORT
+#pragma EXPORT
+#endif
     editor->UnregisterScriptHeader(ourScriptHeader);
 }
 
 LIBRARY_API void AGS_EditorProperties(HWND parent)
 {
-    #pragma EXPORT
+#if DO_PRAGMA_EXPORT
+#pragma EXPORT
+#endif
 }
 
 LIBRARY_API int AGS_EditorSaveGame(char *buffer, int bufsize)
 {
-    #pragma EXPORT
+#if DO_PRAGMA_EXPORT
+#pragma EXPORT
+#endif
     return 0; 
 }
 
 LIBRARY_API void AGS_EditorLoadGame(char *buffer, int bufsize)
 {
-    #pragma EXPORT
+#if DO_PRAGMA_EXPORT
+#pragma EXPORT
+#endif
 }
 
 // ******* END DESIGN TIME  *******
@@ -401,13 +413,17 @@ void AgsWorksCompat_FindLeaderboard(const char *leaderboardName)
 
 LIBRARY_API const char *AGS_GetPluginName()
 {
-    #pragma EXPORT
+#if DO_PRAGMA_EXPORT
+#pragma EXPORT
+#endif
     return "AGS Works Plugin";
 }
 
 LIBRARY_API void AGS_EngineStartup(IAGSEngine *lpEngine)
 {
-    #pragma EXPORT
+#if DO_PRAGMA_EXPORT
+#pragma EXPORT
+#endif
     engine = lpEngine;
 
     // Make sure it's got the version with the features we need
@@ -545,7 +561,9 @@ LIBRARY_API void AGS_EngineStartup(IAGSEngine *lpEngine)
 
 LIBRARY_API void AGS_EngineShutdown()
 {
-    #pragma EXPORT
+#if DO_PRAGMA_EXPORT
+#pragma EXPORT
+#endif
     if(works){
         works->Shutdown();
         delete works;
@@ -557,7 +575,9 @@ LIBRARY_API void AGS_EngineShutdown()
 
 LIBRARY_API int AGS_EngineOnEvent (int event, int data)
 {
-    #pragma EXPORT
+#if DO_PRAGMA_EXPORT
+#pragma EXPORT
+#endif
     if (event == AGSE_FINALSCREENDRAW)
     {
         // use this as main_game_loop
@@ -571,13 +591,17 @@ LIBRARY_API int AGS_EngineOnEvent (int event, int data)
 
 LIBRARY_API int AGS_EngineDebugHook(const char* scriptName, int lineNum, int reserved)
 {
-    #pragma EXPORT
+#if DO_PRAGMA_EXPORT
+#pragma EXPORT
+#endif
     return 0;
 }
 
 LIBRARY_API void AGS_EngineInitGfx(const char* driverID, void* data)
 {
-    #pragma EXPORT
+#if DO_PRAGMA_EXPORT
+#pragma EXPORT
+#endif
     // nothing
 }
 
