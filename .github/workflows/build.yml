@@ -8,7 +8,7 @@ env:
 
 jobs:
   build-agsworks:
-    runs-on: ${{ matrix.os }}
+    runs-on: ${{ matrix.platform.os }}
     strategy:
       matrix:
         platform:
