@@ -93,7 +93,7 @@ jobs:
           mkdir AGSWorksPlugin/Linux
           mkdir AGSWorksPlugin/Linux/x64
           mkdir AGSWorksPlugin/macOS
-          mv agsworks-release/$BUILD_TYPE/agsworks.dll AGSWorksPlugin/Windows/x86/AGSWorks.dll
+          mv agsworks-release/$BUILD_TYPE/AGSWorks.dll AGSWorksPlugin/Windows/x86/AGSWorks.dll
           mv agsworks-release/libAGSWorks.so AGSWorksPlugin/Linux/x64/libAGSWorks.so
           mv agsworks-release/libAGSWorks.dylib AGSWorksPlugin/macOS/libAGSWorks.dylib
           zip -r AGSWorksPlugin.zip AGSWorksPlugin
