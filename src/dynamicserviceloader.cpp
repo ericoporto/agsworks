@@ -76,6 +76,14 @@ AGSWorksDriver* DynamicServiceLoader::CreateWorksDriverImpl() {
     return nullptr;
 }
 
+void* DynamicServiceLoader::GetFunctionAddressImpl(const std::string &fn_name)
+{
+    if(!(get()._lib.IsLoaded()))
+        return nullptr;
+
+    return get()._lib.GetFunctionAddress(fn_name);
+}
+
 ServiceType DynamicServiceLoader::GetServiceType()
 {
     return get()._type;
@@ -83,10 +91,7 @@ ServiceType DynamicServiceLoader::GetServiceType()
 
 void* DynamicServiceLoader::GetFunctionAddress(const std::string &fn_name)
 {
-    if(!(get()._lib.IsLoaded()))
-        return nullptr;
-
-    return get()._lib.GetFunctionAddress(fn_name);
+    return get().GetFunctionAddressImpl(fn_name);
 }
 
 void DynamicServiceLoader::Init(std::string &this_dll_dir)

@@ -1,6 +1,7 @@
 //
 // Created by erico on 5/18/2024.
 //
+#include "core/platform.h"
 #include "library_posix.h"
 
 #if AGS_PLATFORM_OS_LINUX \
@@ -14,7 +15,7 @@
 
 namespace AGSWorks {
 
-AGSWorks::PosixLibrary::PosixLibrary(PosixLibrary &&other)
+PosixLibrary::PosixLibrary(PosixLibrary &&other)
 {
     _library = other._library;
     other._library = NULL;
@@ -23,12 +24,12 @@ AGSWorks::PosixLibrary::PosixLibrary(PosixLibrary &&other)
     _path = std::move(other._path);
 }
 
-AGSWorks::PosixLibrary::~PosixLibrary()
+PosixLibrary::~PosixLibrary()
 {
     Unload();
 }
 
-std::string AGSWorks::PosixLibrary::GetFilenameForLib(const std::string libname)
+std::string PosixLibrary::GetFilenameForLib(const std::string libname)
 {
     std::string filename = "lib";
 #if AGS_PLATFORM_OS_MACOS
@@ -39,7 +40,7 @@ std::string AGSWorks::PosixLibrary::GetFilenameForLib(const std::string libname)
     return filename;
 }
 
-bool AGSWorks::PosixLibrary::Load(const std::string libname, const std::vector<std::string> lookup)
+bool PosixLibrary::Load(const std::string libname, const std::vector<std::string> lookup)
 {
 
     Unload();
@@ -55,7 +56,7 @@ bool AGSWorks::PosixLibrary::Load(const std::string libname, const std::vector<s
     return true;
 }
 
-void AGSWorks::PosixLibrary::Unload()
+void PosixLibrary::Unload()
 {
     if (_library) {
         dlclose(_library);
@@ -64,22 +65,21 @@ void AGSWorks::PosixLibrary::Unload()
         _filename = "";
         _path = "";
     }
-
 }
 
-bool AGSWorks::PosixLibrary::IsLoaded() const
+bool PosixLibrary::IsLoaded() const
 {
     return _library != nullptr;
 }
 
-void *AGSWorks::PosixLibrary::GetFunctionAddress(const std::string &fn_name)
+void *PosixLibrary::GetFunctionAddress(const std::string &fn_name)
 {
     if (!_library)
         return nullptr;
     return dlsym(_library, fn_name.c_str());
 }
 
-void *AGSWorks::PosixLibrary::TryLoad(const std::string &path)
+void *PosixLibrary::TryLoad(const std::string &path)
 {
     void *lib = dlopen(path.c_str(), RTLD_LAZY);
     if (!lib) {
@@ -90,8 +90,7 @@ void *AGSWorks::PosixLibrary::TryLoad(const std::string &path)
     return lib;
 }
 
-void *
-AGSWorks::PosixLibrary::TryLoadAnywhere(const std::string &libfile, const std::vector<std::string> &lookup, std::string &path)
+void *PosixLibrary::TryLoadAnywhere(const std::string &libfile, const std::vector<std::string> &lookup, std::string &path)
 {
     // Try rpath first
     path = libfile;

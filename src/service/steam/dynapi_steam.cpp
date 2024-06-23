@@ -10,15 +10,8 @@
 namespace AGSWorks
 {
 
-static void *libHandle = nullptr;
-static struct ISteamUserStats *steamUserStats = nullptr;
-static struct ISteamScreenshots *steamScreenshots = nullptr;
-
-
 void DynApiSteam::ClearFuncsToNull()
 {
-    libHandle = nullptr;
-    steamUserStats = nullptr;
     c_SteamAPI_InitFlat = nullptr;
     c_SteamAPI_Shutdown = nullptr;
     c_SteamAPI_RunCallbacks = nullptr;

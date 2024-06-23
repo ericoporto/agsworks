@@ -15,7 +15,7 @@ LIBDIR :=
 CC := gcc
 CXX := g++
 CFLAGS := -fPIC -fvisibility=hidden -O2 -g -Wall -std=c++11
-LIBS := -lstdc++
+LIBS := -lstdc++ -ldl
 
 ifeq ($(UNAME), Darwin)
 TARGET := libagsworks.dylib
