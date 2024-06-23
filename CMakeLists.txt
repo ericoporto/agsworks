@@ -82,6 +82,12 @@ endif ()
 if(APPLE)
     # The MacOS version of AGS expects plugins to have the .dylib extension
     set_target_properties(AGSWorks PROPERTIES SUFFIX ".dylib")
+
+    if(MACOS)
+        if(NOT CMAKE_OSX_ARCHITECTURES OR CMAKE_OSX_ARCHITECTURES STREQUAL "")
+            set(CMAKE_OSX_ARCHITECTURES "arm64;x86_64" CACHE STRING "")
+        endif()
+    endif ()
 endif()
 
 if(MINGW OR MSYS)
