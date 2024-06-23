@@ -34,7 +34,7 @@ bool WindowsLibrary::Load(std::string libname, std::vector<std::string> lookup)
     std::string libfile = GetFilenameForLib(libname);
     std::string path; // save last tried path
     HMODULE lib = static_cast<HMODULE>(TryLoadAnywhere(libfile, lookup, path));
-    if (lib == NULL)
+    if (lib == nullptr)
         return false;
     _library = lib;
     _name = libname;
