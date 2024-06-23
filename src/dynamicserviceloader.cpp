@@ -62,16 +62,12 @@ AGSWorksDriver* DynamicServiceLoader::CreateWorksDriverImpl() {
     switch (type) {
         case ServiceType::eDummy:
             return DummyWorksDriver::CreateDriver();
-            break;
         case ServiceType::eSteam:
             return SteamWorksDriver::CreateDriver();
-            break;
         case ServiceType::eGog:
             return GogWorksDriver::CreateDriver();
-            break;
         case ServiceType::eNone:
             return nullptr;
-            break;
     }
     return nullptr;
 }
