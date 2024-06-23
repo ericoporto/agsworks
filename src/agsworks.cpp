@@ -44,7 +44,7 @@ DllAdapt dllAdaptor;
 // DllMain - standard Windows DLL entry point.
 // The AGS editor will cause this to get called when the editor first
 // starts up, and when it shuts down at the end.
-BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserved)
+BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID /*lpReserved*/)
 {
     switch (ul_reason_for_call)
     {
@@ -149,14 +149,14 @@ LIBRARY_API void AGS_EditorShutdown()
     editor->UnregisterScriptHeader(ourScriptHeader);
 }
 
-LIBRARY_API void AGS_EditorProperties(HWND parent)
+LIBRARY_API void AGS_EditorProperties(HWND /*parent*/)
 {
 #if DO_PRAGMA_EXPORT
 #pragma EXPORT
 #endif
 }
 
-LIBRARY_API int AGS_EditorSaveGame(char *buffer, int bufsize)
+LIBRARY_API int AGS_EditorSaveGame(char */*buffer*/, int /*bufsize*/)
 {
 #if DO_PRAGMA_EXPORT
 #pragma EXPORT
@@ -164,7 +164,7 @@ LIBRARY_API int AGS_EditorSaveGame(char *buffer, int bufsize)
     return 0; 
 }
 
-LIBRARY_API void AGS_EditorLoadGame(char *buffer, int bufsize)
+LIBRARY_API void AGS_EditorLoadGame(char */*buffer*/, int /*bufsize*/)
 {
 #if DO_PRAGMA_EXPORT
 #pragma EXPORT
@@ -573,7 +573,7 @@ LIBRARY_API void AGS_EngineShutdown()
     AWLog::Shutdown();
 }
 
-LIBRARY_API int AGS_EngineOnEvent (int event, int data)
+LIBRARY_API int AGS_EngineOnEvent (int event, int /*data*/)
 {
 #if DO_PRAGMA_EXPORT
 #pragma EXPORT
@@ -589,7 +589,7 @@ LIBRARY_API int AGS_EngineOnEvent (int event, int data)
     return 0;
 }
 
-LIBRARY_API int AGS_EngineDebugHook(const char* scriptName, int lineNum, int reserved)
+LIBRARY_API int AGS_EngineDebugHook(const char* /*scriptName*/, int /*lineNum*/, int /*reserved*/)
 {
 #if DO_PRAGMA_EXPORT
 #pragma EXPORT
@@ -597,7 +597,7 @@ LIBRARY_API int AGS_EngineDebugHook(const char* scriptName, int lineNum, int res
     return 0;
 }
 
-LIBRARY_API void AGS_EngineInitGfx(const char* driverID, void* data)
+LIBRARY_API void AGS_EngineInitGfx(const char* /*driverID*/, void* /*data*/)
 {
 #if DO_PRAGMA_EXPORT
 #pragma EXPORT
