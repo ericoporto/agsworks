@@ -7,11 +7,14 @@ env:
   BUILD_TYPE: Release
 
 jobs:
-  build:
+  build-agsworks:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest, macOS-latest]
+        platform:
+          - { name: linux,    os: ubuntu-latest}
+          - { name: windows,  os: windows-latest}
+          - { name: macOS,    os: macOS-latest}
 
     steps:
     - uses: actions/checkout@v4
@@ -64,9 +67,31 @@ jobs:
         # fi
     - uses: actions/upload-artifact@v4
       with:
-        name: agsworks-${{ matrix.os }}
+        name: agsworks-${{ matrix.platform.name }}
         path: |
           ${{runner.workspace}}/build/Debug/*.dll
           ${{runner.workspace}}/build/Release/*.dll
           ${{runner.workspace}}/build/*.so
           ${{runner.workspace}}/build/*.dylib
+
+  release-agsworks:
+    needs: build-agsworks
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download built plugin artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: agsworks-release
+          pattern: agsworks-*
+          merge-multiple: true
+      - run: ls -R agsworks-release
+      - name: Create release and upload assets
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: |
+            agsworks-release/*
+          allowUpdates: true
+          omitBodyDuringUpdate: true
+          token: ${{ secrets.GITHUB_TOKEN }}
+
