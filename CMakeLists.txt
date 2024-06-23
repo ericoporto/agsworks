@@ -3,6 +3,14 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/CMake")
 set(CMAKE_USER_MAKE_RULES_OVERRIDE ${CMAKE_CURRENT_SOURCE_DIR}/CMake/c_flag_overrides.cmake)
 set(CMAKE_USER_MAKE_RULES_OVERRIDE_CXX ${CMAKE_CURRENT_SOURCE_DIR}/CMake/cxx_flag_overrides.cmake)
 
+if(APPLE)
+    # Build ARM+Intel fat binary if not specified one specifically
+    # must be set prior to first project() or enable_language()
+    if(NOT CMAKE_OSX_ARCHITECTURES OR CMAKE_OSX_ARCHITECTURES STREQUAL "")
+        set(CMAKE_OSX_ARCHITECTURES "arm64;x86_64" CACHE FORCE "")
+    endif()
+endif ()
+
 project(AGSWorks
         VERSION 0.1.0
         DESCRIPTION "AGS Plugin to connect to game stores."
@@ -82,12 +90,6 @@ endif ()
 if(APPLE)
     # The MacOS version of AGS expects plugins to have the .dylib extension
     set_target_properties(AGSWorks PROPERTIES SUFFIX ".dylib")
-    # Build ARM+Intel fat binary if not specified one specifically
-    if(MACOS)
-        if(NOT CMAKE_OSX_ARCHITECTURES OR CMAKE_OSX_ARCHITECTURES STREQUAL "")
-            set(CMAKE_OSX_ARCHITECTURES "arm64;x86_64" CACHE STRING "")
-        endif()
-    endif ()
 endif()
 
 if(MINGW OR MSYS)
